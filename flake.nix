@@ -52,6 +52,7 @@
     # $ darwin-rebuild build --flake .#KasBook
     darwinConfigurations."KasBook" = nix-darwin.lib.darwinSystem {
       modules = [
+        ./overlays.nix
         configuration
         homeManager.darwinModules.home-manager
         # {

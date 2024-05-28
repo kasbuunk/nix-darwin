@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -15,7 +15,7 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -52,7 +52,7 @@
     delve
     diffutils
     docker
-    emacs
+    unstable.emacs
     fd
     fish
     fzf
@@ -74,6 +74,7 @@
     go-mockery
     go-tools
     grpcurl
+    home-manager
     htop
     impl
     inetutils
@@ -108,7 +109,7 @@
     sqlite
     swiProlog
     terminal-notifier
-    terraform # Needs configuration to allow non-free package.
+    # terraform # Needs configuration to allow non-free package.
     terraform-ls
     tflint
     thefuck
@@ -199,7 +200,7 @@
       tsg_proxy_dev = "kubectl port-forward svc/postgres 5433:5432";
     };
     initExtra = ''
-      echo 'This zsh session was initialised with configuration in ~/.home-manager/home.nix'
+      echo 'This zsh session was initialised with configuration in ~/.config/nix-darwin/'
       # Nix
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
       . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
