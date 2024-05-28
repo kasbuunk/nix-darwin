@@ -10,7 +10,7 @@
   home-manager.users.kasbuunk = { config, pkgs, lib, ... }: {
     home.stateVersion = "23.11";
     imports = [
-      #./home.nix
+      ./home.nix
       #./darwin.nix
     ];
   };
