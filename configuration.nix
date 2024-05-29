@@ -1,18 +1,22 @@
 { pkgs, lib, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
-  # Enable experimental nix command and flakes
-  nix.package = pkgs.unstable.nix;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '' + lib.optionalString (pkgs.system == "aarch64-darwin") ''
-    extra-platforms = x86_64-darwin aarch64-darwin
-  '';
-  nix.configureBuildUsers = true;
-  # nix.settings.auto-optimise-store = true;
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
+  environment.shells = [ pkgs.fish pkgs.zsh pkgs.bash ];
+
+  # Environment variables available in all shell inititialisations.
+  environment.variables = {
+    EDITOR = "emacs";
+  };
+
+  # Fonts.
+  fonts = {
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      recursive
+      monaspace
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    ];
+  };
 
   homebrew = {
     enable = true;
@@ -42,7 +46,7 @@
   #     "transmission"
       "font-hack-nerd-font"
       "insomnia"
-      # "obsidian" # Installed in another way; app store?
+      # "obsidian" # Installed in another way; manually?
       "openra"
       "orbstack"
       "postman"
@@ -60,47 +64,80 @@
       "Slack" = 803453959;
   #     "Save to Reader" = 1640236961;
     };
+    whalebrews = [
+    ];
   };
+
+  networking.computerName = "KasBook";
+
+  nix.package = pkgs.unstable.nix;
+  
+  # Enable experimental nix command and flakes
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '' + lib.optionalString (pkgs.system == "aarch64-darwin") ''
+    extra-platforms = x86_64-darwin aarch64-darwin
+  '';
+  nix.configureBuildUsers = true;
+  
+  nixpkgs.config.allowUnfree = true;
+
+  programs.bash.enable = true;
+  programs.direnv.enable = true;
+  programs.direnv.silent = false;
+  programs.fish.enable = true;
+  programs.fish.shellInit = ''for p in (string split " " $NIX_PROFILES); fish_add_path --prepend --move $p/bin; end'';
+  programs.zsh.enable = true;
+
+  security.pam.enableSudoTouchIdAuth = true;
+
+  # Auto upgrade nix package and the daemon service.
+  services.nix-daemon.enable = true;
+  services.emacs.enable = true;
 
   system.activationScripts.postUserActivation.text = ''
     sudo cp -f ${pkgs.unstable._1password}/bin/op /usr/local/bin/op
   '';
-
-  environment.shells = [ pkgs.fish pkgs.zsh pkgs.bash ];
-  programs.bash.enable = true;
-  programs.zsh.enable = true;
-  programs.fish.enable = true;
-  # programs.fish.shellInit = ''for p in (string split " " $NIX_PROFILES); fish_add_path --prepend --move $p/bin; end'';
-
-  security.pam.enableSudoTouchIdAuth = true;
-
-  # # Tailscale
-  # services.tailscale.enable = true;
-
-  # # Fonts
-  # fonts = {
-  #   fontDir.enable = true;
-  #   fonts = with pkgs; [
-  #     recursive
-  #     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  #   ];
-  # };
-
+ 
+  system.defaults.".GlobalPreferences"."com.apple.sound.beep.sound" = "/System/Library/Sounds/Morse.aiff";
   system.defaults.NSGlobalDomain = {
-    AppleInterfaceStyle = "Dark";
-    AppleKeyboardUIMode = 3;
     AppleEnableSwipeNavigateWithScrolls = true;
+    AppleInterfaceStyle = "Dark";
+    AppleICUForce24HourTime = true;
+    AppleKeyboardUIMode = 3;
     AppleMetricUnits = 1;
     AppleMeasurementUnits = "Centimeters";
-    AppleTemperatureUnit = "Celsius";
     ApplePressAndHoldEnabled = false;
+    AppleScrollerPagingBehavior = true;
+    AppleShowAllFiles = true;
+    AppleShowScrollBars = "Always";
+    AppleTemperatureUnit = "Celsius";
     NSNavPanelExpandedStateForSaveMode = true;
     NSNavPanelExpandedStateForSaveMode2 = true;
+    "com.apple.keyboard.fnState" = false;
+    "com.apple.mouse.tapBehavior" = null;
+    "com.apple.swipescrolldirection" = true;
+    "com.apple.trackpad.enableSecondaryClick" = true;
+    "com.apple.trackpad.scaling" = 3.0;
   };
+  system.defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
+  system.defaults.alf.allowdownloadsignedenabled = 0;
+  system.defaults.alf.stealthenabled = 1;
 
   system.defaults.dock = {
     autohide = true;
     mru-spaces = false;
+    persistent-apps = [
+      "/Applications/Safari.app"
+      "/Applications/Google\ Chrome.app"
+      "/Applications/Slack.app"
+      "/Applications/Spotify.app"
+      "/Applications/Obsidian.app"
+    ];
+    persistent-others = [
+      "~/Documents"
+      "~/Downloads"
+    ];
     wvous-bl-corner = 4; # Desktop
     wvous-br-corner = 14; # Quick Note
   };
@@ -110,9 +147,40 @@
     FXDefaultSearchScope = "SCcf"; # Current Folder
     FXEnableExtensionChangeWarning = false;
     FXPreferredViewStyle = "clmv"; # Column View
+    QuitMenuItem = true;
     ShowPathbar = true;
     ShowStatusBar = true;
   };
 
   system.defaults.loginwindow.GuestEnabled = false;
+  system.defaults.menuExtraClock = {
+    IsAnalog = false;
+    Show24Hour = true;
+    ShowAMPM = false;
+    ShowDate = 1;
+    ShowDayOfMonth = true;
+    ShowDayOfWeek = true;
+    ShowSeconds = true;
+  };
+
+  system.defaults.screencapture = {
+    location = "~/Documents/ScreenCaptures";
+    type = "jpg";
+  };
+
+  system.keyboard = {
+    enableKeyMapping = true;
+    remapCapsLockToEscape = true;
+  };
+
+  # For backward compatibility. Change with caution!
+  system.stateVersion = 4;
+
+  time.timeZone = "Europe/Amsterdam";
+  
+  users.users.kasbuunk = {
+    name = "kasbuunk";
+    home = "/Users/kasbuunk";
+    shell = pkgs.zsh;
+  };
 }
