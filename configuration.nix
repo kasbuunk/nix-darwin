@@ -8,6 +8,10 @@
     EDITOR = "emacs";
   };
 
+  environment.systemPackages = [
+    pkgs.vim
+  ];
+
   # Fonts.
   fonts = {
     fontDir.enable = true;
@@ -70,8 +74,6 @@
 
   networking.computerName = "KasBook";
 
-  nix.package = pkgs.unstable.nix;
-  
   # Enable experimental nix command and flakes
   nix.extraOptions = ''
     experimental-features = nix-command flakes
@@ -79,8 +81,16 @@
     extra-platforms = x86_64-darwin aarch64-darwin
   '';
   nix.configureBuildUsers = true;
+
+  nix.package = pkgs.unstable.nix;
+
+  # Necessary for using flakes on this system.
+  nix.settings.experimental-features = "nix-command flakes";
   
   nixpkgs.config.allowUnfree = true;
+
+  # The platform the configuration will be used on.
+  nixpkgs.hostPlatform = "aarch64-darwin";
 
   programs.bash.enable = true;
   programs.direnv.enable = true;
@@ -173,8 +183,10 @@
     remapCapsLockToEscape = true;
   };
 
-  # For backward compatibility. Change with caution!
+  # For backwards compatibility, please read the changelog before changing.
+  # $ darwin-rebuild changelog
   system.stateVersion = 4;
+
 
   time.timeZone = "Europe/Amsterdam";
   

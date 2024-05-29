@@ -1,6 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
+  # Complete configuration options:
+  # https://nix-community.github.io/home-manager/options.xhtml
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "kasbuunk";
@@ -39,6 +42,7 @@
 
     alacritty
     any-nix-shell
+    (aspellWithDicts (dicts: with dicts; [ nl en en-computers en-science ]))
     autojump
     babelfish
     bash
@@ -52,7 +56,7 @@
     delve
     diffutils
     docker
-    unstable.emacs
+    # unstable.emacs29-macport
     fd
     fish
     fzf
@@ -73,11 +77,14 @@
     go-outline
     go-mockery
     go-tools
+    graphviz
     grpcurl
     home-manager
     htop
+    imagemagick
     impl
     inetutils
+    inkscape
     istioctl
     jq
     kind
@@ -85,6 +92,7 @@
     kubectx
     kubecolor
     kubernetes-helm
+    languagetool
     # libgcc # Causes error.
     libtool
     # libvterm # Unsupported on apple-darwin
@@ -97,6 +105,8 @@
     nmap
     nodejs_21
     openssl # Causes error
+    plantuml
+    pdf2svg
     perl
     pgcli
     pkg-config
@@ -111,6 +121,7 @@
     terminal-notifier
     terraform # Non-free.
     terraform-ls
+    texlive.combined.scheme-full
     tflint
     thefuck
     tmux
@@ -167,14 +178,47 @@
     DIRENV_LOG_FORMAT = "";
   };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs.alacritty.enable = true;
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
-  programs.alacritty.enable = true;
   programs.bash.enable = true;
+
+  programs.emacs = {
+    enable = true;
+    package = pkgs.unstable.emacs29-macport;
+    extraPackages = epkgs: with epkgs; [ vterm zmq ];
+  };
+
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      fish_title = "prompt_pwd"; # set terminal window title
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
+      "....." = "cd ../../../..";
+      "......" = "cd ../../../../..";
+      zf = "z --pipe=fzf";
+      darwin-switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+    };
+    plugins = with pkgs.fishPlugins; [
+      { name = "fzf"; src = fzf-fish.src; } # better than built-in fzf keybinds
+    ];
+    shellInit = ''
+      any-nix-shell fish --info-right | source
+      thefuck --alias | source
+      fish_add_path /opt/homebrew/bin
+    '';
+  };
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = false; # use fzf-fish plugin instead
+  };
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
   programs.zsh = {
     # Configuration options: https://github.com/nix-community/home-manager/blob/master/modules/programs/zsh.nix
     enable = true;
@@ -249,30 +293,6 @@
 
       complete -o nospace -C /opt/homebrew/bin/terraform terraform
     '';
-  };
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      fish_title = "prompt_pwd"; # set terminal window title
-      "..." = "cd ../..";
-      "...." = "cd ../../..";
-      "....." = "cd ../../../..";
-      "......" = "cd ../../../../..";
-      zf = "z --pipe=fzf";
-      darwin-switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
-    };
-    plugins = with pkgs.fishPlugins; [
-      { name = "fzf"; src = fzf-fish.src; } # better than built-in fzf keybinds
-    ];
-    shellInit = ''
-      any-nix-shell fish --info-right | source
-      thefuck --alias | source
-      fish_add_path /opt/homebrew/bin
-    '';
-  };
-  programs.fzf = {
-    enable = true;
-    enableFishIntegration = false; # use fzf-fish plugin instead
   };
 
   # error upon installation
