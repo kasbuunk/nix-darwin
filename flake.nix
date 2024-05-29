@@ -60,7 +60,8 @@
           # home-manager.useUserPackages = true;
           # home-manager.users.kasbuunk = import ./home.nix;
         # }
-       ./users.nix
+        ./users.nix
+        ./configuration.nix
       ];
       specialArgs = { inherit inputs; };
     };

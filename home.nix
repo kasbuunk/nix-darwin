@@ -109,7 +109,7 @@
     sqlite
     swiProlog
     terminal-notifier
-    # terraform # Needs configuration to allow non-free package.
+    terraform # Non-free.
     terraform-ls
     tflint
     thefuck
