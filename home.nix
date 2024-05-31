@@ -4,19 +4,28 @@
   # Complete configuration options:
   # https://nix-community.github.io/home-manager/options.xhtml
 
+  manual.manpages.enable = true;
+
+  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+  # plain files is through 'home.file'.
+  home.file = {
+    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
+
+    # # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #   org.gradle.console=verbose
+    #   org.gradle.daemon.idletimeout=3600000
+    # '';
+  };
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "kasbuunk";
   home.homeDirectory = "/Users/kasbuunk";
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  home.username = "kasbuunk";
 
   # nixpkgs.config.allowUnfree = true;
 
@@ -56,7 +65,7 @@
     delve
     diffutils
     docker
-    # unstable.emacs29-macport
+    # unstable.emacs29-macport # Collides with programs.emacs.
     fd
     fish
     fzf
@@ -139,20 +148,7 @@
     zig
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
+  # home.preferXdgDirectories = true; # Error for unknown reason.
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. If you don't want to manage your shell through Home
@@ -178,6 +174,23 @@
     DIRENV_LOG_FORMAT = "";
   };
 
+  home.shellAliases = {
+    "..." = "cd ../..";
+    "...." = "cd ../../..";
+    "....." = "cd ../../../..";
+    "......" = "cd ../../../../..";
+  };
+
+
+  # This value determines the Home Manager release that your configuration is
+  # compatible with. This helps avoid breakage when a new Home Manager release
+  # introduces backwards incompatible changes.
+  #
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
+  home.stateVersion = "23.11"; # Please read the comment before changing.
+
   programs.alacritty.enable = true;
   programs.direnv = {
     enable = true;
@@ -195,10 +208,6 @@
     enable = true;
     shellAliases = {
       fish_title = "prompt_pwd"; # set terminal window title
-      "..." = "cd ../..";
-      "...." = "cd ../../..";
-      "....." = "cd ../../../..";
-      "......" = "cd ../../../../..";
       zf = "z --pipe=fzf";
       darwin-switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
     };
@@ -293,6 +302,16 @@
 
       complete -o nospace -C /opt/homebrew/bin/terraform terraform
     '';
+  };
+
+  xdg = {
+    enable = true;
+    userDirs = {
+      documents = "Documents";
+      download = "Downloads";
+      music = "Music";
+      pictures = "Pictures";
+    };
   };
 
   # error upon installation
