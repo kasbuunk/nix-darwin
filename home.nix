@@ -71,7 +71,6 @@
     fzf
     fx
     gci
-    git
     gnused
     glab
     go
@@ -102,9 +101,7 @@
     kubecolor
     kubernetes-helm
     languagetool
-    # libgcc # Causes error.
     libtool
-    # libvterm # Unsupported on apple-darwin
     libxml2
     lolcat
     lua
@@ -113,7 +110,7 @@
     neovim
     nmap
     nodejs_21
-    openssl # Causes error
+    openssl
     plantuml
     pdf2svg
     perl
@@ -133,7 +130,6 @@
     texlive.combined.scheme-full
     tflint
     thefuck
-    tmux
     tree-sitter
     ttyd
     typescript
@@ -167,10 +163,6 @@
   #
   home.sessionVariables = {
     EDITOR = "emacs";
-
-    # Weave-specific
-    WEAVE_CLUSTER_USER = "kas";
-    USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
     DIRENV_LOG_FORMAT = "";
   };
 
@@ -191,117 +183,149 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  programs.alacritty.enable = true;
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-  programs.bash.enable = true;
+  programs = {
+    alacritty.enable = true;
 
-  programs.emacs = {
-    enable = true;
-    package = pkgs.unstable.emacs29-macport;
-    extraPackages = epkgs: with epkgs; [ vterm zmq ];
-  };
-
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      fish_title = "prompt_pwd"; # set terminal window title
-      zf = "z --pipe=fzf";
-      darwin-switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
-    };
-    plugins = with pkgs.fishPlugins; [
-      { name = "fzf"; src = fzf-fish.src; } # better than built-in fzf keybinds
-    ];
-    shellInit = ''
-      any-nix-shell fish --info-right | source
-      thefuck --alias | source
-      fish_add_path /opt/homebrew/bin
-    '';
-  };
-  programs.fzf = {
-    enable = true;
-    enableFishIntegration = false; # use fzf-fish plugin instead
-  };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
-  programs.zsh = {
-    # Configuration options: https://github.com/nix-community/home-manager/blob/master/modules/programs/zsh.nix
-    enable = true;
-    enableAutosuggestions = true;
-    autocd = true;
-    oh-my-zsh = {
+    direnv = {
       enable = true;
-      plugins = [ "git" ];
-      theme = "robbyrussell";
+      nix-direnv.enable = true;
     };
-    shellAliases = {
-      firebird = "docker exec -it firebird /bin/bash -c \"/opt/connect_database.sh\"";
-      k = "kubecolor";
-      kns = "kubectl get namespaces";
-      vim = "nvim";
-      kbash = "kubectl run util-pod-kas --image=nicolaka/netshoot -i --tty --rmenabled = false";
+    bash.enable = true;
 
-      # Weave-specific.
-      psql_tsg_staging = "__psql_tsg staging";
-      psql_tsg_prod = "__psql_tsg prod";
-      tsg_proxy_prod = "cloud_sql_proxy -instances=thesharinggroup:europe-west4:postgres-instance-prod=tcp:2345";
-      tsg_proxy_staging = "cloud_sql_proxy -instances=thesharinggroup:europe-west4:postgres-instance-staging-6=tcp:3456";
-      tsg_proxy_dev = "kubectl port-forward svc/postgres 5433:5432";
+    emacs = {
+      enable = true;
+      package = pkgs.unstable.emacs29-macport;
     };
-    initExtra = ''
-      echo 'This zsh session was initialised with configuration in ~/.config/nix-darwin/'
-      # Nix
-      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-      . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-      fi
-      # End Nix
 
-      # Autojump
-      [ -f ~/.nix-profile/etc/profile.d/autojump.sh ] && . ~/.nix-profile/etc/profile.d/autojump.sh
+    fish = {
+      enable = true;
+      shellAliases = {
+        fish_title = "prompt_pwd"; # set terminal window title
+        zf = "z --pipe=fzf";
+        darwin-switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+      };
+      plugins = with pkgs.fishPlugins; [
+        { name = "fzf"; src = fzf-fish.src; } # better than built-in fzf keybinds
+      ];
+      shellInit = ''
+        any-nix-shell fish --info-right | source
+        thefuck --alias | source
+        fish_add_path /opt/homebrew/bin
+      '';
+    };
+    fzf = {
+      enable = true;
+      enableFishIntegration = false; # use fzf-fish plugin instead
+    };
 
-      eval $(thefuck --alias)
-      eval "$(direnv hook zsh)" # Not sure what this is; copied from old ~/.zshrc.backup
+    git = {
+      enable = true;
+      package = pkgs.gitAndTools.gitFull;
+      userName = "Kas Buunk";
+      userEmail = "kasbuunk@icloud.com";
+      # TODO: sign commits with ssh key.
+      # TODO: configure authentication with ssh.
+      ignores = [
+        ".DS_Store"
+        "._*"
+        ".ignore"
+        ".envrc"
+        ".direnv/"
+        ".idea"
+        ".vscode"
+      ];
+      extraConfig = {
+        pull.rebase = true;
+	rebase.autostash = true;
+	push.autoSetupRemote = true;
+      };
+    };
 
-      # setting for gup command (auto generate)
-      fpath=(~/.zsh/completion $fpath)
+    # Let home manager install and manage itself.
+    home-manager.enable = true;
 
-      autoload -Uz compinit && compinit -i
-      autoload -U +X bashcompinit && bashcompinit
-      autoload -U edit-command-line
+    tmux = {
+      enable = true;
+      clock24 = true;
+      customPaneNavigationAndResize = true;
+      disableConfirmationPrompt = true;
+      escapeTime = 0;
+      keyMode = "emacs";
+      mouse = true;
+      newSession = true;
+      prefix = "c-a";
+    };
 
-      # define widget function
-      function cursor-after-first-word {
-          zle up-history
-          zle beginning-of-line
-          zle forward-word
-          RBUFFER=" $RBUFFER"
-      }
+    zsh = {
+      # Configuration options: https://github.com/nix-community/home-manager/blob/master/modules/programs/zsh.nix
+      enable = true;
+      enableAutosuggestions = true;
+      autocd = true;
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" ];
+        theme = "robbyrussell";
+      };
+      shellAliases = {
+        firebird = "docker exec -it firebird /bin/bash -c \"/opt/connect_database.sh\"";
+        k = "kubecolor";
+        kns = "kubectl get namespaces";
+        vim = "nvim";
+        kbash = "kubectl run util-pod-kas --image=nicolaka/netshoot -i --tty --rmenabled = false";
+      };
+      initExtra = ''
+        echo 'Session initialised with configuration in ~/.config/nix-darwin/'
+        # nix
+        if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+        fi
+        # end nix
 
-      # create widget from function
-      zle -N cursor-after-first-word
+        # autojump
+        [ -f ~/.nix-profile/etc/profile.d/autojump.sh ] && . ~/.nix-profile/etc/profile.d/autojump.sh
 
-      zle -N edit-command-line
-      bindkey '^E' edit-command-line                   # Opens Vim to edit current command line
-      bindkey '^R' history-incremental-search-backward # Perform backward search in command line history
-      bindkey '^S' history-incremental-search-forward  # Perform forward search in command line history
-      bindkey '^P' history-search-backward             # Go back/search in history (autocomplete)
-      bindkey '^N' history-search-forward              # Go forward/search in history (autocomplete)
-      bindkey -v # Enable Vim mode in ZSH.
-      bindkey '^[o' cursor-after-first-word # bind widget to ESC-o.
+        eval $(thefuck --alias)
+        eval "$(direnv hook zsh)" # Not sure what this is; copied from old ~/.zshrc.backup
 
-      kubectl completion zsh >/tmp/kubecompletion
-      source /tmp/kubecompletion
-      rm /tmp/kubecompletion
-      complete -o default -o nospace -F __start_kubectl k
+        # setting for gup command (auto generate)
+        fpath=(~/.zsh/completion $fpath)
 
-      compdef kubecolor=kubectl # Ensure kubecolor has kubectl autocomplete.
+        autoload -Uz compinit && compinit -i
+        autoload -U +X bashcompinit && bashcompinit
+        autoload -U edit-command-line
 
-      complete -o nospace -C /opt/homebrew/bin/terraform terraform
-    '';
+        # define widget function
+        function cursor-after-first-word {
+            zle up-history
+            zle beginning-of-line
+            zle forward-word
+            rbuffer=" $rbuffer"
+        }
+
+        # create widget from function
+        zle -N cursor-after-first-word
+
+        # Errors with 'bad option -n'.
+        zle -N edit-command-line
+
+        bindkey '^E' edit-command-line                   # Opens Vim to edit current command line
+        bindkey '^R' history-incremental-search-backward # Perform backward search in command line history
+        bindkey '^S' history-incremental-search-forward  # Perform forward search in command line history
+        bindkey '^P' history-search-backward             # Go back/search in history (autocomplete)
+        bindkey '^N' history-search-forward              # Go forward/search in history (autocomplete)
+        bindkey -v # enable vim mode in zsh.
+        bindkey '^[o' cursor-after-first-word # bind widget to esc-o.
+
+        kubectl completion zsh >/tmp/kubecompletion
+        source /tmp/kubecompletion
+        rm /tmp/kubecompletion
+        complete -o default -o nospace -f __start_kubectl k
+
+        compdef kubecolor=kubectl # Ensure kubecolor has kubectl autocomplete.
+
+        complete -o nospace -c /opt/homebrew/bin/terraform terraform
+      '';
+    };
   };
 
   xdg = {
