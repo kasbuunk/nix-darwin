@@ -186,7 +186,9 @@
   };
 
   programs = {
-    alacritty.enable = true;
+    alacritty = {
+      enable = true;
+    };
 
     direnv = {
       enable = true;
@@ -257,7 +259,18 @@
       newSession = true;
       prefix = "c-a";
       extraConfig = ''
-        # Shortcuts and other things to be appended to the tmux configuration.
+        # Make links clickable.
+        set -ga terminal-features "*:hyperlinks"
+
+        # Navigate windows.
+        bind -n C-h select-pane -L
+        bind -n C-j select-pane -D
+        bind -n C-k select-pane -U
+        bind -n C-l select-pane -R
+
+        # Termguicolors.
+        set -g default-terminal "$TERM"
+        set -ag terminal-overrides ",$TERM:Tc"
       '';
     };
 
@@ -266,6 +279,7 @@
       enable = true;
       enableAutosuggestions = true;
       autocd = true;
+      dotDir = ".config/zsh";
       oh-my-zsh = {
         enable = true;
         plugins = [ "git" ];
