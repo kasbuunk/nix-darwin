@@ -28,45 +28,21 @@
     taps = [
     ];
     brews = [
-  #     "mas"
-  #     "cmake"
-  #     "automake"
-  #     "libtool"
-  #     "pkg-config"
-      "gcc"
-      "readline"
-  #     "fastlane"
-  #     "cocoapods"
     ];
     casks = [
-  #     "docker"
-  #     "amethyst"
-  #     "bluesnooze" # disable bluetooth on sleep.
-  #     "choosy" # open specific links in specific apps.
-  #     "google-chrome"
-  #     "daisydisk"
-  #     "raycast"
-  #     "vlc"
-  #     "transmission"
       "font-hack-nerd-font"
+      "google-chrome"
       "insomnia"
-      # "obsidian" # Installed in another way; manually?
-      "openra"
+      "microsoft-teams"
       "orbstack"
       "postman"
       "qmk-toolbox"
-      "microsoft-teams"
       "visual-studio-code"
     ];
     masApps = {
-      "Xcode" = 497799835;
-  #     "1Password for Safari" = 1569813296;
-      # "AdGuard for Safari" = 1440147259;
-  #     "Super Agent" = 1568262835;
-      "Vimari" = 1480933944;
-  #     "Barbee" = 1548711022;
       "Slack" = 803453959;
-  #     "Save to Reader" = 1640236961;
+      "Vimari" = 1480933944;
+      "Xcode" = 497799835;
     };
     whalebrews = [
     ];
@@ -141,12 +117,10 @@
       "/Applications/Safari.app"
       "/Applications/Google\ Chrome.app"
       "/Applications/Slack.app"
-      "/Applications/Spotify.app"
-      "/Applications/Obsidian.app"
+      "Users/kasbuunk/Applications/Home\ Manager\ Apps/Emacs.app"
+      "Users/kasbuunk/Applications/Home\ Manager\ Apps/Alacritty.app"
     ];
     persistent-others = [
-      "~/Documents"
-      "~/Downloads"
     ];
     wvous-bl-corner = 4; # Desktop
     wvous-br-corner = 14; # Quick Note

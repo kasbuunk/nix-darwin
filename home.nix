@@ -256,6 +256,9 @@
       mouse = true;
       newSession = true;
       prefix = "c-a";
+      extraConfig = ''
+        # Shortcuts and other things to be appended to the tmux configuration.
+      '';
     };
 
     zsh = {
