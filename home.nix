@@ -245,6 +245,11 @@
       };
     };
 
+    gpg = {
+      enable = true;
+      homedir = "/Users/kasbuunk/.config/gnupg"; # Interpolate with variable instead of hardcoded.
+    };
+
     # Let home manager install and manage itself.
     home-manager.enable = true;
 
@@ -291,6 +296,7 @@
         kns = "kubectl get namespaces";
         vim = "nvim";
         kbash = "kubectl run util-pod-kas --image=nicolaka/netshoot -i --tty --rmenabled = false";
+        darwin-switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
       };
       initExtra = ''
         echo 'Session initialised with configuration in ~/.config/nix-darwin/'
