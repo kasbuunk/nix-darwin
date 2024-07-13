@@ -22,11 +22,12 @@
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
     };
+    device = "";
   in
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#KasBook
-    darwinConfigurations."KasBook" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations.${device}= nix-darwin.lib.darwinSystem {
       modules = [
         ./overlays.nix
         configuration
@@ -42,6 +43,6 @@
     };
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."KasBook".pkgs;
+    darwinPackages = self.darwinConfigurations.${device}.pkgs;
   };
 }

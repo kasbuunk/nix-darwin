@@ -1,11 +1,14 @@
 { pkgs, lib, ... }:
-
+let
+  device = "";
+  userName = "";
+in
 {
   environment.shells = [ pkgs.fish pkgs.zsh pkgs.bash ];
 
   # Environment variables available in all shell inititialisations.
   environment.variables = {
-    EDITOR = "emacs";
+    EDITOR = "vim";
   };
 
   environment.systemPackages = [
@@ -31,15 +34,17 @@
     ];
     casks = [
       "font-hack-nerd-font"
-      "google-chrome"
+      # "google-chrome"
       "insomnia"
       "microsoft-teams"
+      "obsidian"
       "orbstack"
       "postman"
       "qmk-toolbox"
       "visual-studio-code"
     ];
     masApps = {
+      "1Password for Safari" = 1569813296;
       "Slack" = 803453959;
       "Vimari" = 1480933944;
       "Xcode" = 497799835;
@@ -48,7 +53,7 @@
     ];
   };
 
-  networking.computerName = "KasBook";
+  networking.computerName = "${device}";
 
   # Enable experimental nix command and flakes
   nix.extraOptions = ''
@@ -104,7 +109,7 @@
     "com.apple.mouse.tapBehavior" = null;
     "com.apple.swipescrolldirection" = true;
     "com.apple.trackpad.enableSecondaryClick" = true;
-    "com.apple.trackpad.scaling" = 3.0;
+    "com.apple.trackpad.scaling" = 5.0;
   };
   system.defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
   system.defaults.alf.allowdownloadsignedenabled = 0;
@@ -114,11 +119,14 @@
     autohide = true;
     mru-spaces = false;
     persistent-apps = [
-      "/Applications/Safari.app"
-      "/Applications/Google\ Chrome.app"
+      "/Applications/Firefox.app"
       "/Applications/Slack.app"
-      "Users/kasbuunk/Applications/Home\ Manager\ Apps/Emacs.app"
-      "Users/kasbuunk/Applications/Home\ Manager\ Apps/Alacritty.app"
+      "Users/${userName}/Applications/Home\ Manager\ Apps/Emacs.app"
+      "Users/${userName}/Applications/Home\ Manager\ Apps/Alacritty.app"
+      "/Applications/Obsidian.app"
+      "/Applications/Microsoft\ Outlook.app"
+      "/Applications/Microsoft\ Teams.app"
+      "/Applications/1Password.app"
     ];
     persistent-others = [
     ];
@@ -161,12 +169,11 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
 
-
   time.timeZone = "Europe/Amsterdam";
   
-  users.users.kasbuunk = {
-    name = "kasbuunk";
-    home = "/Users/kasbuunk";
+  users.users.${userName} = {
+    name = "${userName}";
+    home = "/Users/${userName}";
     shell = pkgs.zsh;
   };
 }

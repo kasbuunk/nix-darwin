@@ -35,7 +35,10 @@ sudo xcodebuild -license accept # Needed later for nix-darwin.
 # An empty file solves the issue.
 sudo mkdir -p /usr/local/bin
 sudo touch /usr/local/bin/op
+sudo chmod +x /usr/local/bin/op # Make it executable. The 1password cli will get moved here.
 ```
+
+Install 1Password manually from their website. In Settings -> Developer: check 'Use the SSH agent'. Also, check 'Integrate with 1Password CLI'. The first git operation that interacts with an ssh key, will require you to authorise 1Password to access the key.
 
 Go to System Preferences -> General -> About and choose a name, e.g. `KasBook`. Whatever this name is, remember to replace any occurrence with your name of choice in the Darwin configuration files. While you're here, enable the firewall in security settings.
 

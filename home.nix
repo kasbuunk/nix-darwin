@@ -1,8 +1,28 @@
-{ config, pkgs, lib, ... }:
-
+{ config, pkgs, lib, inputs, ... }:
+let
+  authSocket = "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+  gitSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA2GefXvl1Vbp8i2uRVi/CGl5PtUPE+ByE4pc8dvECbd";
+  userName = "";
+  privateDomain = "";
+  companyDomain = "";
+  clientDomain = "";
+  clientNamespace = "";
+  clientToken = "";
+in
 {
   # Complete configuration options:
   # https://nix-community.github.io/home-manager/options.xhtml
+
+  # imports = [
+  #   inputs.sops-nix.nixosModules.sops
+  # ];
+  #
+  # sops.defaultSopsFile = "./secrets/secrets.yaml";
+  # sops.defaultSopsFormat = "yaml";
+  # sops.age.keyFile = "/Users/${userName}/.config/sops/age/keys.txt";
+  #
+  # sops.secrets.example_key = { };
+  # sops.secrets."myservice/my_subdir/my_secret" = { };
 
   manual.manpages.enable = true;
 
@@ -20,13 +40,24 @@
       #   org.gradle.console=verbose
       #   org.gradle.daemon.idletimeout=3600000
       # '';
+
+      # A bit contrived, but this at least removes plaintext email addresses.
+      ".config/git/allowed_signers".text = ''
+        kas.buunk@${clientDomain} ${gitSigningKey}
+        kbuunk@${companyDomain} ${gitSigningKey}
+        kasbuunk@${privateDomain} ${gitSigningKey}
+      '';
+      ".config/git/${clientNamespace}".text = ''
+        [url "git@ssh.dev.azure.com:v3/${clientNamespace}/"]
+          insteadOf = https://dev.azure.com/${clientNamespace}/
+      '';
     };
 
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
-    homeDirectory = "/Users/kasbuunk";
+    homeDirectory = "/Users/${userName}";
 
-    username = "kasbuunk";
+    username = "${userName}";
 
     # nixpkgs.config.allowUnfree = true;
 
@@ -55,7 +86,7 @@
       (aspellWithDicts (dicts: with dicts; [ nl en en-computers en-science ]))
       autojump
       babelfish
-      bash
+      # bash # Caused collision. Installed below.
       bat
       cacert
       clang
@@ -74,13 +105,15 @@
       gci
       gnused
       glab
-      go
+      # go # Installed in programs below.
+      godef
       gofumpt
       gopkgs
       gomodifytags
       gopls
       gotest
       gotests
+      gotestsum
       gotools
       golangci-lint
       go-outline
@@ -108,10 +141,9 @@
       lua
       lua-language-server
       natscli
-      neovim
+      unstable.neovim
       nmap
       nodejs_21
-      obsidian
       openssl
       plantuml
       pdf2svg
@@ -124,7 +156,9 @@
       ripgrep
       rustup
       sbcl
+      sops
       sqlite
+      strongswan
       swiProlog
       terminal-notifier
       terraform # Non-free.
@@ -161,11 +195,16 @@
     #
     # or
     #
-    #  /etc/profiles/per-user/kasbuunk/etc/profile.d/hm-session-vars.sh
+    #  /etc/profiles/per-user/${userName}/etc/profile.d/hm-session-vars.sh
     #
     sessionVariables = {
-      EDITOR = "emacs";
       DIRENV_LOG_FORMAT = "";
+      EDITOR = "nvim";
+      SSH_AUTH_SOCK = authSocket;
+
+      CGO_ENABLED = "0";
+      DEVOPS_PAT_TOKEN_NAME = "development";
+      DEVOPS_PAT_TOKEN_VALUE = clientToken;
     };
 
     shellAliases = {
@@ -226,8 +265,35 @@
       enable = true;
       package = pkgs.gitAndTools.gitFull;
       userName = "Kas Buunk";
-      userEmail = "kasbuunk@icloud.com";
-      # TODO: sign commits with ssh key.
+      userEmail = "kasbuunk@${privateDomain}";
+      signing.key = gitSigningKey;
+      signing.signByDefault = true;
+      iniContent.gpg.format = "ssh";
+      iniContent.gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+      iniContent.gpg.ssh.allowedSignersFile = "~/.config/git/allowed_signers";
+
+      includes = [
+        {
+          condition = "hasconfig:remote.*.url:git@lab.${companyDomain}**";
+          contents = {
+            user = {
+              email = "kbuunk@${companyDomain}";
+            };
+          };
+        }
+        {
+          condition = "hasconfig:remote.*.url:git@ssh.dev.azure.com:v3/${clientNamespace}/**";
+          contents = {
+            user = {
+              email = "kas.buunk@${clientDomain}";
+            };
+          };
+        }
+        {
+          path = "~/.config/git/${clientNamespace}";
+        }
+      ];
+
       # TODO: configure authentication with ssh.
       ignores = [
         ".DS_Store"
@@ -245,13 +311,25 @@
       };
     };
 
+    go = {
+      enable = true;
+      goPrivate = [ "dev.azure.com" ];
+    };
+
     gpg = {
       enable = true;
-      homedir = "/Users/kasbuunk/.config/gnupg"; # Interpolate with variable instead of hardcoded.
+      homedir = "/Users/${userName}/.config/gnupg";
     };
 
     # Let home manager install and manage itself.
     home-manager.enable = true;
+
+    ssh = {
+      enable = true;
+      extraOptionOverrides = {
+        IdentityAgent = "\"${authSocket}\"";
+      };
+    };
 
     tmux = {
       enable = true;
