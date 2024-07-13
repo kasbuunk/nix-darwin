@@ -17,8 +17,7 @@ in
 
   # Fonts.
   fonts = {
-    fontDir.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       recursive
       monaspace
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -34,7 +33,6 @@ in
     ];
     casks = [
       "font-hack-nerd-font"
-      # "google-chrome"
       "insomnia"
       "microsoft-teams"
       "obsidian"
