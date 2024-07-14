@@ -294,7 +294,6 @@ in
         }
       ];
 
-      # TODO: configure authentication with ssh.
       ignores = [
         ".DS_Store"
         "._*"
@@ -313,6 +312,7 @@ in
 
     go = {
       enable = true;
+      package = pkgs.unstable.go;
       goPrivate = [ "dev.azure.com" ];
     };
 
