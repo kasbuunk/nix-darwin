@@ -151,6 +151,8 @@ in
       pgcli
       pkg-config
       postgresql_16
+      unstable.protobuf
+      unstable.protoc-gen-go
       python3
       readline
       ripgrep
