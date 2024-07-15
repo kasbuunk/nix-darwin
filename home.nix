@@ -143,7 +143,7 @@ in
       natscli
       unstable.neovim
       nmap
-      nodejs_21
+      nodejs_22
       openssl
       plantuml
       pdf2svg
@@ -157,7 +157,7 @@ in
       readline
       ripgrep
       rustup
-      sbcl
+      unstable.sbcl
       sops
       sqlite
       strongswan
@@ -362,7 +362,7 @@ in
     zsh = {
       # Configuration options: https://github.com/nix-community/home-manager/blob/master/modules/programs/zsh.nix
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       autocd = true;
       dotDir = ".config/zsh";
       oh-my-zsh = {
