@@ -13,17 +13,6 @@ in
   # Complete configuration options:
   # https://nix-community.github.io/home-manager/options.xhtml
 
-  # imports = [
-  #   inputs.sops-nix.nixosModules.sops
-  # ];
-  #
-  # sops.defaultSopsFile = "./secrets/secrets.yaml";
-  # sops.defaultSopsFormat = "yaml";
-  # sops.age.keyFile = "/Users/${userName}/.config/sops/age/keys.txt";
-  #
-  # sops.secrets.example_key = { };
-  # sops.secrets."myservice/my_subdir/my_secret" = { };
-
   manual.manpages.enable = true;
 
   home = {
@@ -103,6 +92,7 @@ in
       fzf
       fx
       gci
+      unstable.ghc
       gnused
       glab
       # go # Installed in programs below.
@@ -122,6 +112,7 @@ in
       graphviz
       grpcurl
       home-manager
+      unstable.haskellPackages.cabal-install
       htop
       imagemagick
       impl
@@ -151,7 +142,7 @@ in
       pgcli
       pkg-config
       postgresql_16
-      unstable.protobuf
+      unstable.protobuf_27
       unstable.protoc-gen-go
       python3
       readline
@@ -173,6 +164,7 @@ in
       typescript
       ugrep
       vim
+      virtualenv
       watch
       wget
       xmlsec
