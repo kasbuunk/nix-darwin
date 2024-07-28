@@ -113,6 +113,7 @@ in
       grpcurl
       home-manager
       unstable.haskellPackages.cabal-install
+      unstable.stack
       htop
       imagemagick
       impl
