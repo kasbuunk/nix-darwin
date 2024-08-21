@@ -307,7 +307,7 @@ in
 
     go = {
       enable = true;
-      package = pkgs.unstable.go;
+      package = pkgs.unstable.go_1_23;
       goPrivate = [ "dev.azure.com" ];
     };
 
