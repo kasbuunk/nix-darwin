@@ -1,6 +1,6 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, specialArgs, ... }:
 let
-  userName = "";
+  userName = specialArgs.userName;
 in
 {
   home-manager.useGlobalPkgs = true;

@@ -23,6 +23,7 @@
       system.configurationRevision = self.rev or self.dirtyRev or null;
     };
     device = "";
+    userName = "";
   in
   {
     # Build darwin flake using:
@@ -39,7 +40,9 @@
         ./users.nix
         ./configuration.nix
       ];
-      specialArgs = { inherit inputs; };
+      specialArgs = {
+        inherit inputs device userName;
+      };
     };
 
     # Expose the package set, including overlays, for convenience.

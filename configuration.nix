@@ -1,7 +1,7 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, specialArgs, ... }:
 let
-  device = "";
-  userName = "";
+  device = specialArgs.device;
+  userName = specialArgs.userName;
 in
 {
   environment.shells = [ pkgs.fish pkgs.zsh pkgs.bash ];
