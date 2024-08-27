@@ -85,7 +85,7 @@ in
       cowsay
       delve
       diffutils
-      docker
+      unstable.docker
       # unstable.emacs29-macport # Collides with programs.emacs.
       fd
       fish
