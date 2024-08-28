@@ -9,7 +9,6 @@ in
   home-manager.users.${userName} = { config, pkgs, lib, ... }: {
     imports = [
       ./home.nix
-      ./darwin.nix
     ];
   };
 }

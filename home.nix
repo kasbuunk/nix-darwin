@@ -98,6 +98,7 @@ in
       # go # Installed in programs below.
       godef
       gofumpt
+      goku
       gopkgs
       gomodifytags
       gopls
@@ -120,6 +121,7 @@ in
       inetutils
       inkscape
       istioctl
+      joker
       jq
       kind
       kubectl
@@ -425,6 +427,19 @@ in
       '';
     };
   };
+
+  targets.darwin = {
+    defaults = {
+      "com.apple.Safari" = {
+        AutoFillPasswords = false;
+        AutoFillCreditCardData = true;
+        IncludeDevelopMenu = true;
+        ShowOverlayStatusBar = true;
+      };
+    };
+    search = "Ecosia";
+  };
+
 
   xdg = {
     enable = true;
