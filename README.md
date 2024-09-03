@@ -50,6 +50,12 @@ https://nixos.org/download/
 
 Clone this repo in `~/.config/nix-darwin`.
 
+Update the `secrets.nix` file with relevant values. In particular the `device` and `userName` must be provided. Next, trick git into thinking the file is not changed, so as not to accidentally leak sensitive values.
+
+```sh
+git update-index --assume-unchanged secrets.nix
+```
+
 Install Nix Darwin by following the Flake-based instructions from https://github.com/LnL7/nix-darwin.
 
 ```sh
