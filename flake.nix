@@ -22,20 +22,13 @@
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
     };
-    device = "";
-    userName = "";
-    authSocket = "";
-    gitSigningKey = "";
-    privateDomain = "";
-    companyDomain = "";
-    clientDomain = "";
-    clientNamespace = "";
-    clientToken = "";
+
+    secrets = import ./secrets.nix;
   in
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#KasBook
-    darwinConfigurations.${device}= nix-darwin.lib.darwinSystem {
+    darwinConfigurations.${secrets.device}= nix-darwin.lib.darwinSystem {
       modules = [
         ./overlays.nix
         configuration
@@ -49,20 +42,20 @@
       ];
       specialArgs = {
         inherit
-        inputs
-        device
-        userName
-        authSocket
-        gitSigningKey
-        privateDomain
-        companyDomain
-        clientDomain
-        clientNamespace
-        clientToken;
+        inputs;
+        device = secrets.device;
+        userName = secrets.userName;
+        authSocket = secrets.authSocket;
+        gitSigningKey = secrets.gitSigningKey;
+        privateDomain = secrets.privateDomain;
+        companyDomain = secrets.companyDomain;
+        clientDomain = secrets.clientDomain;
+        clientNamespace = secrets.clientNamespace;
+        clientToken = secrets.clientToken;
       };
     };
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations.${device}.pkgs;
+    darwinPackages = self.darwinConfigurations.${secrets.device}.pkgs;
   };
 }
