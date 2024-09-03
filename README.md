@@ -23,7 +23,7 @@ This guide is purely for my own reference. If you found it useful, great! If you
 Launch a terminal session and run:
 
 ```sh
-xcode-select --install # Follow the wizard.
+xcode-select --install # You've unlocked a new quest. Follow the wizard!
 ```
 
 Reboot.
@@ -31,14 +31,14 @@ Reboot.
 ```sh
 sudo xcodebuild -license accept # Needed later for nix-darwin.
 
-# Nix Darwin apparently fails on trying to copy this file, because it's missing.
+# Nix Darwin apparently fails on trying to copy this 1Password file, because it's missing.
 # An empty file solves the issue.
 sudo mkdir -p /usr/local/bin
 sudo touch /usr/local/bin/op
-sudo chmod +x /usr/local/bin/op # Make it executable. The 1password cli will get moved here.
+sudo chmod +x /usr/local/bin/op # Make it executable. The 1password cli will appear here later.
 ```
 
-Install 1Password manually from their website. In Settings -> Developer: check 'Use the SSH agent'. Also, check 'Integrate with 1Password CLI'. The first git operation that interacts with an ssh key, will require you to authorise 1Password to access the key.
+Install 1Password manually from their website. In Settings -> Developer: check `Use the SSH agent`. Also, check `Integrate with 1Password CLI`. The first git operation that interacts with an ssh key, will require you to authorise 1Password to access the key.
 
 Go to System Preferences -> General -> About and choose a name, e.g. `KasBook`. Whatever this name is, remember to replace any occurrence with your name of choice in the Darwin configuration files. While you're here, enable the firewall in security settings.
 
