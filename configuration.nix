@@ -32,7 +32,6 @@ in
     brews = [
     ];
     casks = [
-      "docker"
       "font-hack-nerd-font"
       "microsoft-teams"
       "obsidian"
