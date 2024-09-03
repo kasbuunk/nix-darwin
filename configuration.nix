@@ -34,11 +34,9 @@ in
     casks = [
       "docker"
       "font-hack-nerd-font"
-      "insomnia"
       "microsoft-teams"
       "obsidian"
       "orbstack"
-      "postman"
       "qmk-toolbox"
       "visual-studio-code"
     ];
