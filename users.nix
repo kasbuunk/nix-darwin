@@ -154,6 +154,7 @@ in
         unstable.protoc-gen-go
         python3
         readline
+        unstable.rectangle
         ripgrep
         rustup
         unstable.sbcl
