@@ -24,6 +24,13 @@
     };
     device = "";
     userName = "";
+    authSocket = "";
+    gitSigningKey = "";
+    privateDomain = "";
+    companyDomain = "";
+    clientDomain = "";
+    clientNamespace = "";
+    clientToken = "";
   in
   {
     # Build darwin flake using:
@@ -41,7 +48,17 @@
         ./configuration.nix
       ];
       specialArgs = {
-        inherit inputs device userName;
+        inherit
+        inputs
+        device
+        userName
+        authSocket
+        gitSigningKey
+        privateDomain
+        companyDomain
+        clientDomain
+        clientNamespace
+        clientToken;
       };
     };
 
