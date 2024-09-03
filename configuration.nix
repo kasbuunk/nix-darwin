@@ -43,9 +43,7 @@ in
       "visual-studio-code"
     ];
     masApps = {
-      "1Password for Safari" = 1569813296;
       "Slack" = 803453959;
-      "Vimari" = 1480933944;
       "Xcode" = 497799835;
     };
     whalebrews = [
