@@ -119,6 +119,7 @@ in
         grpcurl
         home-manager
         unstable.haskellPackages.cabal-install
+        unstable.haskellPackages.haskell-language-server
         unstable.stack
         htop
         imagemagick
