@@ -160,6 +160,7 @@ in
         rustup
         unstable.sbcl
         sops
+        spotify
         sqlite
         strongswan
         swiProlog
