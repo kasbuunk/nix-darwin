@@ -97,7 +97,6 @@ in
         fzf
         fx
         gci
-        unstable.ghc
         gnused
         glab
         # go # Installed in programs below.
@@ -118,9 +117,6 @@ in
         graphviz
         grpcurl
         home-manager
-        unstable.haskellPackages.cabal-install
-        unstable.haskellPackages.haskell-language-server
-        unstable.stack
         htop
         imagemagick
         impl
