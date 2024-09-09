@@ -428,6 +428,15 @@ in
           compdef kubecolor=kubectl # Ensure kubecolor has kubectl autocomplete.
 
           complete -o nospace -c /opt/homebrew/bin/terraform terraform
+
+          # ghcup - Haskell
+          # Install manually by following the instructions:
+          # https://www.haskell.org/ghcup/install/
+          # Nix and ghcup don't play well together. The nix ghcup package has been broken for a while
+          # and it's necessary for neovim's integration.
+          if [ -f ~/.ghcup/env ]; then
+            . ~/.ghcup/env
+          fi
         '';
       };
     };
