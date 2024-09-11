@@ -43,6 +43,7 @@ in
     masApps = {
       "Slack" = 803453959;
       "Xcode" = 497799835;
+      "Keymapp" = 6472865291;
     };
     whalebrews = [
     ];
