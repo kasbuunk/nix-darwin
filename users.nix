@@ -149,6 +149,7 @@ in
         postgresql_16
         unstable.protobuf_27
         unstable.protoc-gen-go
+        unstable.protolint
         python3
         readline
         unstable.rectangle
