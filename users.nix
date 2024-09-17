@@ -147,7 +147,7 @@ in
         pgcli
         pkg-config
         postgresql_16
-        unstable.protobuf_27
+        unstable.protobuf_28
         unstable.protoc-gen-go
         unstable.protolint
         python3
