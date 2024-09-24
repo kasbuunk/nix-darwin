@@ -131,6 +131,7 @@ in
         kubecolor
         kubernetes-helm
         languagetool
+        libiconv
         libtool
         libxml2
         lolcat
@@ -154,7 +155,7 @@ in
         readline
         unstable.rectangle
         ripgrep
-        rustup
+        unstable.rustup
         unstable.sbcl
         sops
         spotify
@@ -438,6 +439,9 @@ in
           if [ -f ~/.ghcup/env ]; then
             . ~/.ghcup/env
           fi
+
+          export LIBRARY_PATH="${pkgs.libiconv}/lib:$LIBRARY_PATH"
+          export LD_LIBRARY_PATH="${pkgs.libiconv}/lib:$LD_LIBRARY_PATH"
         '';
       };
     };
