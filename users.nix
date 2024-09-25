@@ -78,6 +78,7 @@ in
         any-nix-shell
         (aspellWithDicts (dicts: with dicts; [ nl en en-computers en-science ]))
         autojump
+        azure-cli
         babelfish
         # bash # Caused collision. Installed below.
         bat
@@ -129,6 +130,7 @@ in
         kubectl
         kubectx
         kubecolor
+        kubelogin
         kubernetes-helm
         languagetool
         libiconv
