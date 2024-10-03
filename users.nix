@@ -155,7 +155,6 @@ in
         unstable.protolint
         python3
         readline
-        unstable.rectangle
         ripgrep
         unstable.rustup
         unstable.sbcl

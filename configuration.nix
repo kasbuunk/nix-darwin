@@ -35,6 +35,7 @@ in
       "docker"
       "font-hack-nerd-font"
       "microsoft-teams"
+      "nikitabobko/tap/aerospace"
       "obsidian"
       "orbstack"
       "qmk-toolbox"
