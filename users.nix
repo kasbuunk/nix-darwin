@@ -281,6 +281,7 @@ in
         autojump
         azure-cli
         babelfish
+        bacon
         # bash # Caused collision. Installed below.
         bat
         cacert
@@ -327,6 +328,7 @@ in
         istioctl
         joker
         jq
+        just
         kind
         kubectl
         kubectx
