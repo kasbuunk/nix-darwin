@@ -285,7 +285,6 @@ in
         # bash # Caused collision. Installed below.
         bat
         cacert
-        clang
         comma
         cmake
         coreutils
@@ -294,6 +293,7 @@ in
         diffutils
         discord
         unstable.docker
+        exercism
         # unstable.emacs29-macport # Collides with programs.emacs.
         fd
         fish
