@@ -443,7 +443,7 @@ in
       bash.enable = true;
 
       emacs = {
-        enable = true;
+        enable = false;
         package = pkgs.unstable.emacs29-macport;
       };
 
