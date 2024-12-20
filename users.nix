@@ -98,12 +98,12 @@ in
           #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
           #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
           [gaps]
-          inner.horizontal = 10
-          inner.vertical =   10
-          outer.left =       10
-          outer.bottom =     10
-          outer.top =        10
-          outer.right =      10
+          inner.horizontal = 0
+          inner.vertical =   0
+          outer.left =       0
+          outer.bottom =     0
+          outer.top =        0
+          outer.right =      0
 
           # 'main' binding mode declaration
           # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -299,6 +299,7 @@ in
         fish
         fzf
         fx
+        gcc-arm-embedded
         gci
         gnused
         glab
@@ -342,17 +343,20 @@ in
         lolcat
         lua
         lua-language-server
+        minicom
         natscli
         unstable.neovim
         nmap
         nodejs_22
         openssl
+        openocd
         plantuml
         pdf2svg
         perl
         pgcli
         pkg-config
         postgresql_16
+        probe-rs # 2024-11: probe-rs-tools
         unstable.protobuf_28
         unstable.protoc-gen-go
         unstable.protolint
@@ -385,6 +389,7 @@ in
         yarn
         yq-go
         zig
+        zola
       ];
 
       # preferXdgDirectories = true; # Error for unknown reasons.
