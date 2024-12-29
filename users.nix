@@ -566,6 +566,8 @@ in
           # Termguicolors.
           set -g default-terminal "$TERM"
           set -ag terminal-overrides ",$TERM:Tc"
+          set-option -g default-shell /bin/zsh
+          set-option -g default-command /bin/zsh
         '';
       };
 
