@@ -369,7 +369,7 @@ in
         spotify
         sqlite
         strongswan
-        swiProlog
+        swi-prolog
         terminal-notifier
         terraform # Non-free.
         terraform-ls
