@@ -40,10 +40,6 @@ in
           kbuunk@${companyDomain} ${gitSigningKey}
           kasbuunk@${privateDomain} ${gitSigningKey}
         '';
-        ".config/git/${clientNamespace}".text = ''
-          [url "git@ssh.dev.azure.com:v3/${clientNamespace}/"]
-            insteadOf = https://dev.azure.com/${clientNamespace}/
-        '';
 
         ".config/aerospace/aerospace.toml".text = ''
           # Place a copy of this config to ~/.aerospace.toml
@@ -384,6 +380,7 @@ in
         virtualenv
         watch
         wget
+        wireshark
         xmlsec
         xorg.libXext
         yarn
@@ -519,12 +516,17 @@ in
           pull.rebase = true;
           rebase.autostash = true;
           push.autoSetupRemote = true;
+          url = {
+            "git@ssh.dev.azure.com:v3/${clientNamespace}/" = {
+              insteadOf = "https://dev.azure.com/${clientNamespace}/";
+            };
+          };
         };
       };
 
       go = {
         enable = true;
-        package = pkgs.unstable.go_1_23;
+        package = pkgs.unstable.go_1_24;
         goPrivate = [ "dev.azure.com" ];
       };
 
