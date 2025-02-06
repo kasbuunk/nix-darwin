@@ -445,7 +445,7 @@ in
       bash.enable = true;
 
       emacs = {
-        enable = false;
+        enable = true;
         package = pkgs.unstable.emacs29-macport;
       };
 
