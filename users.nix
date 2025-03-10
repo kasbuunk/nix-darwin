@@ -291,7 +291,7 @@ in
         discord
         unstable.docker
         exercism
-        # unstable.emacs29-macport # Collides with programs.emacs.
+        unstable.emacs
         fd
         fish
         fzf
@@ -313,7 +313,7 @@ in
         gotools
         golangci-lint
         go-outline
-        go-mockery
+        unstable.go-mockery
         go-tools
         graphviz
         grpcurl
@@ -444,11 +444,6 @@ in
         nix-direnv.enable = true;
       };
       bash.enable = true;
-
-      emacs = {
-        enable = true;
-        package = pkgs.unstable.emacs29-macport;
-      };
 
       fish = {
         enable = true;
