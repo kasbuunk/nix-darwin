@@ -354,7 +354,7 @@ in
         pkg-config
         postgresql_16
         probe-rs # 2024-11: probe-rs-tools
-        unstable.protobuf_28
+        unstable.protobuf
         unstable.protoc-gen-go
         unstable.protolint
         python3
