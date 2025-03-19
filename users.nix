@@ -280,8 +280,10 @@ in
         bacon
         # bash # Caused collision. Installed below.
         bat
+        behave
         brave
         cacert
+        cargo-cross
         comma
         cmake
         coreutils
