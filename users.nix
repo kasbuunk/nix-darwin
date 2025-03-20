@@ -339,6 +339,7 @@ in
         libiconv
         libtool
         libxml2
+        lima
         lolcat
         lua
         lua-language-server
@@ -364,6 +365,7 @@ in
         ripgrep
         unstable.rustup
         unstable.sbcl
+        socat
         sops
         spotify
         sqlite
@@ -538,6 +540,7 @@ in
 
       ssh = {
         enable = true;
+        forwardAgent = true;
         extraOptionOverrides = {
           IdentityAgent = "\"${authSocket}\"";
         };
