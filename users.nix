@@ -289,6 +289,7 @@ in
         coreutils
         cowsay
         delve
+        devcontainer
         diffutils
         discord
         unstable.docker
