@@ -309,12 +309,12 @@ in
         goku
         gopkgs
         gomodifytags
-        gopls
+        unstable.gopls
         gotest
         gotests
         gotestsum
         gotools
-        golangci-lint
+        unstable.golangci-lint
         go-outline
         unstable.go-mockery
         go-tools
