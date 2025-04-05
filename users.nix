@@ -587,7 +587,6 @@ in
           theme = "robbyrussell";
         };
         shellAliases = {
-          firebird = "docker exec -it firebird /bin/bash -c \"/opt/connect_database.sh\"";
           k = "kubecolor";
           kns = "kubectl get namespaces";
           vim = "nvim";
