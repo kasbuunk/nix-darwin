@@ -296,6 +296,7 @@ in
         exercism
         unstable.emacs
         fd
+        ffmpeg
         fish
         fzf
         fx
