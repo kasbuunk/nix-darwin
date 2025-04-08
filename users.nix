@@ -306,19 +306,19 @@ in
         glab
         # go # Installed in programs below.
         godef
-        gofumpt
+        unstable.gofumpt
         goku
-        gopkgs
-        gomodifytags
+        unstable.gopkgs
+        unstable.gomodifytags
         unstable.gopls
-        gotest
-        gotests
-        gotestsum
-        gotools
+        unstable.gotest
+        unstable.gotests
+        unstable.gotestsum
+        unstable.gotools
         unstable.golangci-lint
-        go-outline
+        unstable.go-outline
         unstable.go-mockery
-        go-tools
+        unstable.go-tools
         graphviz
         grpcurl
         home-manager
