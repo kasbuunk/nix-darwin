@@ -298,7 +298,7 @@ in
         discord
         unstable.docker
         exercism
-        unstable.emacs
+        # emacs # Broken
         fd
         ffmpeg
         fish
@@ -460,7 +460,8 @@ in
         shellAliases = {
           fish_title = "prompt_pwd"; # set terminal window title
           zf = "z --pipe=fzf";
-          darwin-switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+          # sudo to prompt immediately.
+          darwin-switch = "sudo -v; nix eval ~/.config/nix-darwin; darwin-rebuild switch --flake ~/.config/nix-darwin";
         };
         plugins = with pkgs.fishPlugins; [
           { name = "fzf"; src = fzf-fish.src; } # better than built-in fzf keybinds
