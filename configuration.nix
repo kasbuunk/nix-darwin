@@ -18,9 +18,10 @@ in
   # Fonts.
   fonts = {
     packages = with pkgs; [
+      noto-fonts-emoji
       recursive
       monaspace
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
     ];
   };
 
@@ -41,9 +42,10 @@ in
       "visual-studio-code"
     ];
     masApps = {
-      "Slack" = 803453959;
-      "Xcode" = 497799835;
-      "Keymapp" = 6472865291;
+      # Uncomment on first install. Takes a long time each rebuild.
+      # "Slack" = 803453959;
+      # "Xcode" = 497799835;
+      # "Keymapp" = 6472865291;
     };
     whalebrews = [
     ];
