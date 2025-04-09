@@ -34,6 +34,10 @@ in
     ];
     casks = [
       "font-hack-nerd-font"
+      "font-fira-mono-nerd-font"
+      "font-fira-code-nerd-font"
+      "font-go-mono-nerd-font"
+      "font-jetbrains-mono-nerd-font"
       "microsoft-teams"
       "nikitabobko/tap/aerospace"
       "obsidian"

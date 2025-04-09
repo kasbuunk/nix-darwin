@@ -19,7 +19,9 @@ in
 
     manual.manpages.enable = true;
 
-    fonts.fontconfig.enable = true;
+    fonts.fontconfig = {
+      enable = true;
+    };
 
     home = {
       # Home Manager is pretty good at managing dotfiles. The primary way to manage
