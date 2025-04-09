@@ -309,7 +309,7 @@ in
         gnused
         glab
         # go # Installed in programs below.
-        godef
+        unstable.godef
         unstable.gofumpt
         goku
         unstable.gopkgs
@@ -533,7 +533,7 @@ in
 
       go = {
         enable = true;
-        package = pkgs.unstable.go_1_24;
+        package = pkgs.staging.go;
         goPrivate = [ "dev.azure.com" ];
       };
 

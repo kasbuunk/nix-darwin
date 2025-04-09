@@ -63,7 +63,24 @@
         "homeManager": "homeManager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
+        "staging": "staging",
         "unstable": "unstable"
+      }
+    },
+    "staging": {
+      "locked": {
+        "lastModified": 1744214686,
+        "narHash": "sha256-eyUCWlgh43+Ul/6agbDDa0fHlIOvZBNtX6S0tlKuw0Y=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "81875530ef6a4e4006e16ec89c862e2a6c632818",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "staging",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "unstable": {

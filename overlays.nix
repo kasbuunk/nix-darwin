@@ -7,6 +7,12 @@
         config = prev.pkgs.config;
       };
     })
+    (final: prev: {
+      staging = import inputs.staging {
+        system = pkgs.system;
+        config = prev.pkgs.config;
+      };
+    })
     (final: prev: rec {
       intel = import inputs.nixpkgs {
         system = "x86_64-darwin";
