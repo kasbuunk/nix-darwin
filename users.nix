@@ -367,6 +367,7 @@ in
         unstable.protoc-gen-go
         unstable.protolint
         python3
+        racket
         readline
         ripgrep
         unstable.rustup
@@ -390,6 +391,7 @@ in
         vim
         virtualenv
         watch
+        websocat
         wget
         wireshark
         xmlsec
