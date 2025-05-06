@@ -284,7 +284,7 @@ in
         bacon
         # bash # Caused collision. Installed below.
         bat
-        behave
+        # behave
         brave
         cacert
         cargo-cross
@@ -293,7 +293,7 @@ in
         coreutils
         cowsay
         delve
-        devcontainer
+        # devcontainer
         diffutils
         discord
         unstable.docker
@@ -353,7 +353,8 @@ in
         natscli
         unstable.neovim
         nmap
-        nodejs_22
+        # nodejs_22 # Broken.
+        unstable.ollama
         openssl
         openocd
         plantuml
@@ -381,12 +382,11 @@ in
         terminal-notifier
         terraform # Non-free.
         terraform-ls
-        texlive.combined.scheme-full
         tflint
         thefuck
         tree-sitter
         ttyd
-        typescript
+        # typescript # Broken.
         ugrep
         vim
         virtualenv
@@ -396,7 +396,7 @@ in
         wireshark
         xmlsec
         xorg.libXext
-        yarn
+        # yarn
         yq-go
         zig
         zola
