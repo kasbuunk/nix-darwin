@@ -6,6 +6,7 @@ in
 {
   environment.shells = [ pkgs.fish pkgs.zsh pkgs.bash ];
 
+
   # Environment variables available in all shell inititialisations.
   environment.variables = {
     EDITOR = "vim";

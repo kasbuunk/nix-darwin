@@ -293,7 +293,7 @@ in
         coreutils
         cowsay
         delve
-        # devcontainer
+        # devcontainer # Breaks build.
         diffutils
         discord
         unstable.docker
@@ -535,7 +535,7 @@ in
 
       go = {
         enable = true;
-        package = pkgs.staging.go;
+        package = pkgs.unstable.go;
         goPrivate = [ "dev.azure.com" ];
       };
 
