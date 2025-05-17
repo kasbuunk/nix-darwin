@@ -306,6 +306,7 @@ in
         fx
         gcc-arm-embedded
         gci
+        gh
         gnused
         glab
         # go # Installed in programs below.
@@ -393,6 +394,7 @@ in
         watch
         websocat
         wget
+        unstable.windsurf
         wireshark
         xmlsec
         xorg.libXext
