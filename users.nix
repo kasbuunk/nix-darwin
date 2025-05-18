@@ -288,6 +288,7 @@ in
         brave
         cacert
         cargo-cross
+        unstable.claude-code
         comma
         cmake
         coreutils
@@ -354,7 +355,7 @@ in
         natscli
         unstable.neovim
         nmap
-        # nodejs_22 # Broken.
+        unstable.nodejs_24
         unstable.ollama
         openssl
         openocd
