@@ -401,7 +401,6 @@ in
         xorg.libXext
         # yarn
         yq-go
-        zed-editor
         zig
         zola
       ];
