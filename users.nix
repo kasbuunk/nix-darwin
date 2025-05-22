@@ -288,7 +288,7 @@ in
         brave
         cacert
         cargo-cross
-        unstable.claude-code
+        # unstable.claude-code
         comma
         cmake
         coreutils
@@ -396,7 +396,7 @@ in
         websocat
         wget
         unstable.windsurf
-        wireshark
+        unstable.wireshark
         xmlsec
         xorg.libXext
         # yarn
