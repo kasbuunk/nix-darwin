@@ -372,6 +372,7 @@ in
         python3
         racket
         readline
+        redis
         ripgrep
         unstable.rustup
         unstable.sbcl
