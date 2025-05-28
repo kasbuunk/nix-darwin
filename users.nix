@@ -266,7 +266,9 @@ in
         # # overrides. You can do that directly here, just don't forget the
         # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
         # # fonts?
-        (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" "FiraCode" "JetBrainsMono" ]; })
+        pkgs.nerd-fonts.fantasque-sans-mono
+        pkgs.nerd-fonts.fira-code
+        pkgs.nerd-fonts.jetbrains-mono
 
         # # You can also create simple shell scripts directly inside your
         # # configuration. For example, this adds a command 'my-hello' to your
@@ -370,7 +372,7 @@ in
         unstable.protoc-gen-go
         unstable.protolint
         python3
-        racket
+        # racket # not available for host platform.
         readline
         redis
         ripgrep
@@ -605,7 +607,7 @@ in
           kbash = "kubectl run util-pod-kas --image=nicolaka/netshoot -i --tty --rmenabled = false";
           darwin-switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
         };
-        initExtra = ''
+        initContent = ''
           echo 'Session initialised with configuration in ~/.config/nix-darwin/'
           # nix
           if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then

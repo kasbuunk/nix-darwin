@@ -22,7 +22,6 @@ in
       noto-fonts-emoji
       recursive
       monaspace
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
     ];
   };
 
@@ -64,7 +63,6 @@ in
   '' + lib.optionalString (pkgs.system == "aarch64-darwin") ''
     extra-platforms = x86_64-darwin aarch64-darwin
   '';
-  nix.configureBuildUsers = true;
 
   nix.package = pkgs.unstable.nix;
 
@@ -83,14 +81,11 @@ in
   programs.fish.shellInit = ''for p in (string split " " $NIX_PROFILES); fish_add_path --prepend --move $p/bin; end'';
   programs.zsh.enable = true;
 
-  security.pam.enableSudoTouchIdAuth = true;
-
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
   services.emacs.enable = true;
 
-  system.activationScripts.postUserActivation.text = ''
-    sudo cp -f ${pkgs.unstable._1password}/bin/op /usr/local/bin/op
+  system.activationScripts."copy1password".text = ''
+    cp -f ${pkgs.unstable._1password}/bin/op /usr/local/bin/op
   '';
  
   system.defaults.".GlobalPreferences"."com.apple.sound.beep.sound" = "/System/Library/Sounds/Morse.aiff";
@@ -167,6 +162,8 @@ in
     enableKeyMapping = true;
     remapCapsLockToEscape = true;
   };
+
+  system.primaryUser = "${userName}";
 
   # For backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
