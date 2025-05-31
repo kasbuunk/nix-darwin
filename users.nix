@@ -290,7 +290,7 @@ in
         brave
         cacert
         cargo-cross
-        # unstable.claude-code
+        unstable.claude-code
         comma
         cmake
         coreutils
