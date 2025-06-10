@@ -27,7 +27,7 @@
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#KasBook
+    # $ darwin-rebuild build --flake .#{secrets.device}
     darwinConfigurations.${secrets.device}= nix-darwin.lib.darwinSystem {
       modules = [
         ./overlays.nix

@@ -605,7 +605,7 @@ in
           kns = "kubectl get namespaces";
           vim = "nvim";
           kbash = "kubectl run util-pod-kas --image=nicolaka/netshoot -i --tty --rmenabled = false";
-          darwin-switch = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+          darwin-switch = "sudo -v; nix eval ~/.config/nix-darwin; darwin-rebuild switch --flake ~/.config/nix-darwin";
         };
         initContent = ''
           echo 'Session initialised with configuration in ~/.config/nix-darwin/'
