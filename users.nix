@@ -393,6 +393,7 @@ in
         ttyd
         # typescript # Broken.
         ugrep
+        unison-ucm
         vim
         virtualenv
         watch
