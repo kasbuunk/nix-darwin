@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
     unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    staging.url = "github:NixOS/nixpkgs/staging";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin/nix-darwin-25.05";
@@ -16,7 +17,7 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, unstable, homeManager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, unstable, staging, homeManager }:
   let
     configuration = { pkgs, ... }: {
       # Set Git commit hash for darwin-version.

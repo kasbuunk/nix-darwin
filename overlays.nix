@@ -19,6 +19,12 @@
         config = prev.pkgs.config;
       };
     })
+    (final: prev: {
+      staging = import inputs.staging {
+        system = pkgs.system;
+        config = prev.pkgs.config;
+      };
+    })
   ];
   nix.nixPath = [
     { nixpkgs = "${inputs.nixpkgs}"; }
