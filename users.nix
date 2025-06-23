@@ -300,6 +300,7 @@ in
         diffutils
         discord
         unstable.docker
+        unstable.edit
         exercism
         # emacs # Broken
         fd
