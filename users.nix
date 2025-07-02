@@ -310,6 +310,7 @@ in
         fx
         gcc-arm-embedded
         gci
+        # staging.gemini-cli
         gh
         gnused
         glab
@@ -360,6 +361,7 @@ in
         nmap
         unstable.nodejs_24
         unstable.ollama
+        openapi-generator-cli
         openssl
         openocd
         plantuml
