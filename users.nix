@@ -359,7 +359,7 @@ in
         natscli
         unstable.neovim
         nmap
-        unstable.nodejs_24
+        # unstable.nodejs_24
         unstable.ollama
         openapi-generator-cli
         openssl
@@ -545,7 +545,7 @@ in
 
       go = {
         enable = true;
-        package = pkgs.staging.go;
+        package = pkgs.unstable.go;
         goPrivate = [ "dev.azure.com" ];
       };
 
