@@ -310,7 +310,7 @@ in
         fx
         gcc-arm-embedded
         gci
-        # staging.gemini-cli
+        unstable.gemini-cli
         gh
         gnused
         glab
@@ -545,7 +545,7 @@ in
 
       go = {
         enable = true;
-        package = pkgs.unstable.go;
+        package = pkgs.staging.go;
         goPrivate = [ "dev.azure.com" ];
       };
 
