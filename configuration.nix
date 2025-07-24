@@ -41,7 +41,6 @@ in
       "microsoft-teams"
       "nikitabobko/tap/aerospace"
       "obsidian"
-      "orbstack"
       "qmk-toolbox"
       "visual-studio-code"
     ];
