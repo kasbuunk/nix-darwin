@@ -299,7 +299,6 @@ in
         # devcontainer # Breaks build.
         diffutils
         discord
-        unstable.docker
         unstable.edit
         exercism
         # emacs # Broken
@@ -355,17 +354,19 @@ in
         lolcat
         lua
         lua-language-server
+        mas
         minicom
         natscli
         unstable.neovim
         nmap
-        # unstable.nodejs_24
+        nodejs_24
         unstable.ollama
         openapi-generator-cli
         openssl
         openocd
-        plantuml
         pdf2svg
+        plantuml
+        podman
         perl
         pgcli
         pkg-config

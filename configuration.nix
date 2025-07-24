@@ -47,6 +47,7 @@ in
     ];
     masApps = {
       # Uncomment on first install. Takes a long time each rebuild.
+      "Azure VPN Client" = 1553936137;
       # "Slack" = 803453959;
       # "Xcode" = 497799835;
       # "Keymapp" = 6472865291;
