@@ -66,6 +66,26 @@ Click `allow` in the notification asking if Terminal is allowed to make changes 
 
 Reboot the system and assert whether the configuration is correct.
 
+### Upgrade
+
+To install after the initial installation, run the following:
+
+```sh
+export DEVICE={device} # Replace with the same device name from secrets.nix.
+sudo darwin-rebuild switch --flake .#DEVICE
+```
+
+### Initialise programs
+
+#### Podman
+
+Run the following to initialise podman:
+
+```sh
+podman machine init
+podman machine start
+```
+
 ## Concluding remarks
 
 Please note this is my personal documentation. There may be small, obvious steps missing, like allowing access, filling in passwords, etc.
