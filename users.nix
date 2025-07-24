@@ -279,6 +279,7 @@ in
 
         alacritty
         any-nix-shell
+        argocd
         (aspellWithDicts (dicts: with dicts; [ nl en en-computers en-science ]))
         autojump
         azure-cli
