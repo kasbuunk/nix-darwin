@@ -363,6 +363,7 @@ in
         nodejs_24
         unstable.ollama
         openapi-generator-cli
+        opencode
         openssl
         openocd
         pdf2svg
