@@ -360,8 +360,8 @@ in
         natscli
         unstable.neovim
         nmap
-        nodejs_24
-        unstable.ollama
+        unstable.nodejs_24
+        # unstable.ollama # crashes on macos
         openapi-generator-cli
         opencode
         openssl
