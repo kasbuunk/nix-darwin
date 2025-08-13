@@ -301,6 +301,7 @@ in
         diffutils
         discord
         unstable.edit
+        beamMinimal27Packages.elixir
         exercism
         # emacs # Broken
         fd
