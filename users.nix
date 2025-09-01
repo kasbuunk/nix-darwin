@@ -311,7 +311,7 @@ in
         fx
         gcc-arm-embedded
         gci
-        unstable.gemini-cli
+        gemini-cli
         gh
         gnused
         glab
@@ -342,6 +342,7 @@ in
         joker
         jq
         just
+        k3d
         kind
         kubectl
         kubectx
