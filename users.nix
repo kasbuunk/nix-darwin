@@ -300,6 +300,7 @@ in
         # devcontainer # Breaks build.
         diffutils
         discord
+        docker
         unstable.edit
         beamMinimal27Packages.elixir
         exercism
@@ -381,6 +382,7 @@ in
         unstable.protolint
         python3
         # racket # not available for host platform.
+        rancher
         readline
         redis
         ripgrep

@@ -42,6 +42,7 @@ in
       "nikitabobko/tap/aerospace"
       "obsidian"
       "qmk-toolbox"
+      "rancher"
       "visual-studio-code"
     ];
     masApps = {
