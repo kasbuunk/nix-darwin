@@ -352,6 +352,7 @@ in
         kubernetes-helm
         languagetool
         libiconv
+        libpcap
         libtool
         libxml2
         lima
