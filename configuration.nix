@@ -42,8 +42,8 @@ in
       "nikitabobko/tap/aerospace"
       "obsidian"
       "qmk-toolbox"
-      # "rancher"
       "visual-studio-code"
+      "warp"
     ];
     masApps = {
       # Uncomment on first install. Takes a long time each rebuild.

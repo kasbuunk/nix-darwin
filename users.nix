@@ -291,6 +291,7 @@ in
         brave
         cacert
         cargo-cross
+        chez
         unstable.claude-code
         comma
         cmake
@@ -304,7 +305,7 @@ in
         unstable.edit
         beamMinimal27Packages.elixir
         exercism
-        # emacs # Broken
+        emacs
         fd
         ffmpeg
         fish
