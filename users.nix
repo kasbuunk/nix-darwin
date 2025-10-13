@@ -8,6 +8,8 @@ let
   clientDomain = specialArgs.clientDomain;
   clientNamespace = specialArgs.clientNamespace;
   clientToken = specialArgs.clientToken;
+  aiToken = specialArgs.aiToken;
+  aiBaseURL = specialArgs.aiBaseURL;
 in
 {
   home-manager.useGlobalPkgs = true;
@@ -446,6 +448,12 @@ in
         CGO_ENABLED = "0";
         DEVOPS_PAT_TOKEN_NAME = "development";
         DEVOPS_PAT_TOKEN_VALUE = clientToken;
+
+        # AI
+        ANTHROPIC_AUTH_TOKEN = aiToken;
+        ANTHROPIC_BASE_URL = aiBaseURL;
+        ANTHROPIC_DEFAULT_SONNET_MODEL = "aws/claude-4-5-sonnet";
+        ANTHROPIC_SMALL_FAST_MODEL = "aws/claude-4-5-sonnet";
       };
 
       shellAliases = {

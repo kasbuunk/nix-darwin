@@ -53,6 +53,8 @@
         clientDomain = secrets.clientDomain;
         clientNamespace = secrets.clientNamespace;
         clientToken = secrets.clientToken;
+        aiToken = secrets.aiToken;
+        aiBaseURL = secrets.aiBaseURL;
       };
     };
 
