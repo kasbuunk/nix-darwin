@@ -264,14 +264,6 @@ in
         # # "Hello, world!" when run.
         hello
 
-        # # It is sometimes useful to fine-tune packages, for example, by applying
-        # # overrides. You can do that directly here, just don't forget the
-        # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-        # # fonts?
-        pkgs.nerd-fonts.fantasque-sans-mono
-        pkgs.nerd-fonts.fira-code
-        pkgs.nerd-fonts.jetbrains-mono
-
         # # You can also create simple shell scripts directly inside your
         # # configuration. For example, this adds a command 'my-hello' to your
         # # environment:
@@ -281,20 +273,20 @@ in
 
         alacritty
         any-nix-shell
-        argocd
+        # argocd # Large.
         (aspellWithDicts (dicts: with dicts; [ nl en en-computers en-science ]))
-        autojump
+        # autojump
         azure-cli
-        babelfish
+        # babelfish
         bacon
         # bash # Caused collision. Installed below.
         bat
         # behave
-        brave
+        # brave Large.
         cacert
-        cargo-cross
-        chez
-        unstable.claude-code
+        # cargo-cross # Unused.
+        # chez # Large.
+        staging.claude-code
         comma
         cmake
         coreutils
@@ -306,23 +298,23 @@ in
         docker
         unstable.edit
         beamMinimal27Packages.elixir
-        exercism
-        emacs
+        # exercism # Unused.
+        # emacs # Large.
         fd
-        ffmpeg
+        # ffmpeg # Very large package.
         fish
         fzf
         fx
-        gcc-arm-embedded
+        # gcc-arm-embedded # Large.
         gci
-        gemini-cli
-        gh
+        # gemini-cli # Unused.
+        # gh # Unused.
         gnused
-        glab
+        # glab # Unused.
         # go # Installed in programs below.
         unstable.godef
         unstable.gofumpt
-        goku
+        # goku # Unused.
         unstable.gopkgs
         unstable.gomodifytags
         unstable.gopls
@@ -332,22 +324,22 @@ in
         unstable.gotools
         unstable.golangci-lint
         unstable.go-outline
-        unstable.go-mockery
+        # unstable.go-mockery # Unused.
         unstable.go-tools
-        graphviz
-        grpcurl
+        # graphviz Large.
+        # grpcurl # Unused.
         home-manager
         htop
-        imagemagick
+        # imagemagick # Very large package.
         impl
         inetutils
-        inkscape
-        istioctl
-        joker
+        # inkscape # Very large package.
+        # istioctl # Large.
+        # joker # Large.
         jq
         just
-        k3d
-        kind
+        # k3d # Unused.
+        # kind # Unused.
         kubectl
         kubectx
         kubecolor
@@ -358,16 +350,16 @@ in
         libpcap
         libtool
         libxml2
-        lima
-        lolcat
-        lua
+        # lima # Unused.
+        # lolcat
+        # lua # Large.
         lua-language-server
         mas
-        minicom
-        natscli
+        # minicom # Unused.
+        # natscli # Unused.
         unstable.neovim
-        nmap
-        unstable.nodejs_24
+        # nmap # Unused.
+        nodejs_24
         # unstable.ollama # crashes on macos
         openapi-generator-cli
         opencode
@@ -376,51 +368,51 @@ in
         pdf2svg
         plantuml
         podman
-        perl
-        pgcli
+        # perl # Unused.
+        # pgcli # Unused.
         pkg-config
-        postgresql_16
-        probe-rs # 2024-11: probe-rs-tools
+        # postgresql_16 # Large.
+        # probe-rs # Unused.
         unstable.protobuf
         unstable.protoc-gen-go
         unstable.protolint
         python3
         # racket # not available for host platform.
-        rancher
+        # rancher # Large.
         readline
-        redis
+        # redis # Large.
         ripgrep
-        unstable.rustup
-        unstable.sbcl
-        socat
-        sops
+        rustup
+        # sbcl # Large.
+        # socat # Unused.
+        # sops # Unused.
         spotify
         sqlite
-        strongswan
-        swi-prolog
+        # strongswan # Unused.
+        # swi-prolog # Large.
         terminal-notifier
-        terraform # Non-free.
-        terraform-ls
-        tflint
+        # terraform # Non-free. Large.
+        # terraform-ls # Large.
+        # tflint # unused.
         thefuck
         tree-sitter
         ttyd
         # typescript # Broken.
         ugrep
-        unison-ucm
+        # unison-ucm # Large.
         vim
         virtualenv
         watch
-        websocat
+        # websocat # Unused.
         wget
-        unstable.windsurf
-        unstable.wireshark
+        # windsurf # Unused.
+        wireshark
         xmlsec
         xorg.libXext
         # yarn
-        yq-go
-        zig
-        zola
+        # yq-go # Unused.
+        # zig # Large.
+        # zola # Unused.
       ];
 
       # preferXdgDirectories = true; # Error for unknown reasons.
