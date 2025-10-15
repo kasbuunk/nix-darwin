@@ -31,6 +31,7 @@ in
     taps = [
     ];
     brews = [
+      "node"
     ];
     casks = [
       "font-hack-nerd-font"

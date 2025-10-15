@@ -286,7 +286,7 @@ in
         cacert
         # cargo-cross # Unused.
         # chez # Large.
-        staging.claude-code
+        # staging.claude-code # Too old version.
         comma
         cmake
         coreutils
@@ -359,7 +359,7 @@ in
         # natscli # Unused.
         unstable.neovim
         # nmap # Unused.
-        nodejs_24
+        # nodejs_24 # Rather with brew.
         # unstable.ollama # crashes on macos
         openapi-generator-cli
         opencode
