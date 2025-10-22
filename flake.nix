@@ -55,6 +55,7 @@
         clientToken = secrets.clientToken;
         aiToken = secrets.aiToken;
         aiBaseURL = secrets.aiBaseURL;
+        privateGitHubToken = secrets.privateGitHubToken;
       };
     };
 

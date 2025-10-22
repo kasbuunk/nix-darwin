@@ -10,6 +10,7 @@ let
   clientToken = specialArgs.clientToken;
   aiToken = specialArgs.aiToken;
   aiBaseURL = specialArgs.aiBaseURL;
+  privateGitHubToken = specialArgs.privateGitHubToken;
 in
 {
   home-manager.useGlobalPkgs = true;
@@ -339,7 +340,7 @@ in
         jq
         just
         # k3d # Unused.
-        # kind # Unused.
+        kind
         kubectl
         kubectx
         kubecolor
@@ -446,6 +447,9 @@ in
         ANTHROPIC_BASE_URL = aiBaseURL;
         ANTHROPIC_DEFAULT_SONNET_MODEL = "aws/claude-4-5-sonnet";
         ANTHROPIC_SMALL_FAST_MODEL = "aws/claude-4-5-sonnet";
+
+        # GitHub
+        GITHUB_TOKEN = privateGitHubToken;
       };
 
       shellAliases = {
