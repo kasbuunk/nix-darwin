@@ -274,6 +274,7 @@ in
 
         alacritty
         any-nix-shell
+        arp-scan
         # argocd # Large.
         (aspellWithDicts (dicts: with dicts; [ nl en en-computers en-science ]))
         # autojump
@@ -359,7 +360,8 @@ in
         # minicom # Unused.
         # natscli # Unused.
         unstable.neovim
-        # nmap # Unused.
+        nettools
+        nmap
         # nodejs_24 # Rather with brew.
         # unstable.ollama # crashes on macos
         openapi-generator-cli
