@@ -297,7 +297,7 @@ in
         # devcontainer # Breaks build.
         diffutils
         discord
-        docker
+        # docker
         unstable.edit
         beamMinimal27Packages.elixir
         # exercism # Unused.
@@ -689,6 +689,9 @@ in
 
           export LIBRARY_PATH="${pkgs.libiconv}/lib:$LIBRARY_PATH"
           export LD_LIBRARY_PATH="${pkgs.libiconv}/lib:$LD_LIBRARY_PATH"
+
+          # Docker desktop.
+          export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
         '';
       };
     };
