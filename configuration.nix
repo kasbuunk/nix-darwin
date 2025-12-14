@@ -32,6 +32,7 @@ in
     ];
     brews = [
       "node"
+      "ffmpeg"
     ];
     casks = [
       "font-hack-nerd-font"
