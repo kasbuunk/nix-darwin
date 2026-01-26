@@ -19,7 +19,7 @@ in
   # Fonts.
   fonts = {
     packages = with pkgs; [
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       recursive
       monaspace
     ];
@@ -70,7 +70,7 @@ in
   nix.package = pkgs.unstable.nix;
 
   nix.settings = {
-    max-jobs = 8;  # or "auto"
+    # max-jobs = 8;  # or "auto"
     cores = 0;     # use all available cores
     experimental-features = "nix-command flakes"; # Necessary for using flakes on this system.
         substituters = [
@@ -124,8 +124,6 @@ in
     "com.apple.trackpad.scaling" = 5.0;
   };
   system.defaults.SoftwareUpdate.AutomaticallyInstallMacOSUpdates = false;
-  system.defaults.alf.allowdownloadsignedenabled = 0;
-  system.defaults.alf.stealthenabled = 1;
 
   system.defaults.dock = {
     autohide = true;

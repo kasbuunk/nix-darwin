@@ -1,4 +1,4 @@
-{ pkgs, lib, specialArgs, ... }:
+{ pkgs, lib, specialArgs, config, ... }:
 let
   userName = specialArgs.userName;
   authSocket = specialArgs.authSocket;
@@ -16,7 +16,7 @@ in
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
 
-  home-manager.users.${userName} = {
+  home-manager.users.${userName} = { config, ... }: {
     # Complete configuration options:
     # https://nix-community.github.io/home-manager/options.xhtml
 
@@ -289,6 +289,7 @@ in
         # cargo-cross # Unused.
         # chez # Large.
         # staging.claude-code # Too old version.
+	codex
         comma
         cmake
         coreutils
@@ -365,7 +366,7 @@ in
         # nodejs_24 # Rather with brew.
         # unstable.ollama # crashes on macos
         openapi-generator-cli
-        opencode
+        # unstable.opencode # Not up to date enough.
         openssl
         openocd
         pdf2svg
@@ -379,7 +380,7 @@ in
         unstable.protobuf
         unstable.protoc-gen-go
         unstable.protolint
-        python3
+        # python3
         # racket # not available for host platform.
         # rancher # Large.
         readline
@@ -390,14 +391,13 @@ in
         # socat # Unused.
         # sops # Unused.
         spotify
-        sqlite
+        # sqlite
         # strongswan # Unused.
         # swi-prolog # Large.
         terminal-notifier
         # terraform # Non-free. Large.
         # terraform-ls # Large.
         # tflint # unused.
-        thefuck
         tree-sitter
         ttyd
         # typescript # Broken.
@@ -507,9 +507,6 @@ in
 
       git = {
         enable = true;
-        package = pkgs.gitAndTools.gitFull;
-        userName = "Kas Buunk";
-        userEmail = "kasbuunk@${privateDomain}";
         signing.key = gitSigningKey;
         signing.signByDefault = true;
         iniContent.gpg.format = "ssh";
@@ -547,7 +544,11 @@ in
           ".idea"
           ".vscode"
         ];
-        extraConfig = {
+        settings = {
+          user = {
+            name = "Kas Buunk";
+            email = "kasbuunk@${privateDomain}";
+          };
           pull.rebase = true;
           rebase.autostash = true;
           push.autoSetupRemote = true;
@@ -560,9 +561,11 @@ in
       };
 
       go = {
-        enable = true;
+        enable = false; # With homebrew instead.
         package = pkgs.staging.go;
-        goPrivate = [ "dev.azure.com" ];
+        env = {
+          GOPRIVATE = [ "dev.azure.com" ];
+        };
       };
 
       gpg = {
@@ -575,9 +578,12 @@ in
 
       ssh = {
         enable = true;
-        forwardAgent = true;
-        extraOptionOverrides = {
-          IdentityAgent = "\"${authSocket}\"";
+        enableDefaultConfig = false;  # Add this line
+        matchBlocks = {
+          "*" = {
+            forwardAgent = true;
+            identityAgent = "\"${authSocket}\"";
+          };
         };
       };
 
@@ -614,7 +620,7 @@ in
         enable = true;
         autosuggestion.enable = true;
         autocd = true;
-        dotDir = ".config/zsh";
+        dotDir = "${config.home.homeDirectory}/.config/zsh";
         oh-my-zsh = {
           enable = true;
           plugins = [ "git" ];
