@@ -46,8 +46,6 @@
         inputs;
         device = secrets.device;
         userName = secrets.userName;
-        authSocket = secrets.authSocket;
-        gitSigningKey = secrets.gitSigningKey;
         privateDomain = secrets.privateDomain;
         companyDomain = secrets.companyDomain;
         clientDomain = secrets.clientDomain;

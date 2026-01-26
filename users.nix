@@ -1,8 +1,8 @@
 { pkgs, lib, specialArgs, config, ... }:
 let
   userName = specialArgs.userName;
-  authSocket = specialArgs.authSocket;
-  gitSigningKey = specialArgs.gitSigningKey;
+  authSocket = "/Users/kbuunk/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+  gitSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA2GefXvl1Vbp8i2uRVi/CGl5PtUPE+ByE4pc8dvECbd";
   privateDomain = specialArgs.privateDomain;
   companyDomain = specialArgs.companyDomain;
   clientDomain = specialArgs.clientDomain;

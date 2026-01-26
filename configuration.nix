@@ -70,7 +70,7 @@ in
   nix.package = pkgs.unstable.nix;
 
   nix.settings = {
-    # max-jobs = 8;  # or "auto"
+    max-jobs = 8;  # or "auto"
     cores = 0;     # use all available cores
     experimental-features = "nix-command flakes"; # Necessary for using flakes on this system.
         substituters = [
