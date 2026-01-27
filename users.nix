@@ -1,16 +1,13 @@
 { pkgs, lib, specialArgs, config, ... }:
 let
   userName = specialArgs.userName;
-  authSocket = "/Users/kbuunk/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+  authSocket = "/Users/${specialArgs.userName}/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock";
   gitSigningKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA2GefXvl1Vbp8i2uRVi/CGl5PtUPE+ByE4pc8dvECbd";
   privateDomain = specialArgs.privateDomain;
   companyDomain = specialArgs.companyDomain;
   clientDomain = specialArgs.clientDomain;
   clientNamespace = specialArgs.clientNamespace;
   clientToken = specialArgs.clientToken;
-  aiToken = specialArgs.aiToken;
-  aiBaseURL = specialArgs.aiBaseURL;
-  privateGitHubToken = specialArgs.privateGitHubToken;
 in
 {
   home-manager.useGlobalPkgs = true;
@@ -289,7 +286,7 @@ in
         # cargo-cross # Unused.
         # chez # Large.
         # staging.claude-code # Too old version.
-	codex
+        codex
         comma
         cmake
         coreutils
@@ -318,7 +315,7 @@ in
         # go # Configured in programs below.
 
         # Uninstalled due to slow adoption and inconsistent versions 
-	# in the unstable channel.
+        # in the unstable channel.
         # unstable.godef
         # unstable.gofumpt
         # unstable.gopkgs
@@ -446,15 +443,6 @@ in
         CGO_ENABLED = "0";
         DEVOPS_PAT_TOKEN_NAME = "development";
         DEVOPS_PAT_TOKEN_VALUE = clientToken;
-
-        # AI
-        ANTHROPIC_AUTH_TOKEN = aiToken;
-        ANTHROPIC_BASE_URL = aiBaseURL;
-        ANTHROPIC_DEFAULT_SONNET_MODEL = "aws/claude-4-5-sonnet";
-        ANTHROPIC_SMALL_FAST_MODEL = "aws/claude-4-5-sonnet";
-
-        # GitHub
-        GITHUB_TOKEN = privateGitHubToken;
       };
 
       shellAliases = {
@@ -581,7 +569,7 @@ in
 
       ssh = {
         enable = true;
-        enableDefaultConfig = false;  # Add this line
+        enableDefaultConfig = false; # Add this line
         matchBlocks = {
           "*" = {
             forwardAgent = true;

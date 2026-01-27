@@ -17,46 +17,44 @@
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, unstable, homeManager }:
-  let
-    configuration = { pkgs, ... }: {
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-    };
-
-    secrets = import ./secrets.nix;
-  in
-  {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#{secrets.device}
-    darwinConfigurations.${secrets.device}= nix-darwin.lib.darwinSystem {
-      modules = [
-        ./overlays.nix
-        configuration
-        homeManager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-        }
-        ./users.nix
-        ./configuration.nix
-      ];
-      specialArgs = {
-        inherit
-        inputs;
-        device = secrets.device;
-        userName = secrets.userName;
-        privateDomain = secrets.privateDomain;
-        companyDomain = secrets.companyDomain;
-        clientDomain = secrets.clientDomain;
-        clientNamespace = secrets.clientNamespace;
-        clientToken = secrets.clientToken;
-        aiToken = secrets.aiToken;
-        aiBaseURL = secrets.aiBaseURL;
-        privateGitHubToken = secrets.privateGitHubToken;
+    let
+      configuration = { pkgs, ... }: {
+        # Set Git commit hash for darwin-version.
+        system.configurationRevision = self.rev or self.dirtyRev or null;
       };
-    };
 
-    # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations.${secrets.device}.pkgs;
-  };
+      secrets = import ./secrets.nix;
+    in
+    {
+      # Build darwin flake using:
+      # $ darwin-rebuild build --flake .#{secrets.device}
+      darwinConfigurations.${secrets.device} = nix-darwin.lib.darwinSystem
+        {
+          modules = [
+            ./overlays.nix
+            configuration
+            homeManager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+            }
+            ./users.nix
+            ./configuration.nix
+          ];
+          specialArgs = {
+            inherit
+              inputs;
+            device = secrets.device;
+            userName = secrets.userName;
+            privateDomain = secrets.privateDomain;
+            companyDomain = secrets.companyDomain;
+            clientDomain = secrets.clientDomain;
+            clientNamespace = secrets.clientNamespace;
+            clientToken = secrets.clientToken;
+
+            # Expose the package set, including overlays, for convenience.
+            darwinPackages = self.darwinConfigurations.${secrets.device}.pkgs;
+          };
+        };
+    };
 }
