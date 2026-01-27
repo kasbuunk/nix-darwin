@@ -561,8 +561,8 @@ in
       };
 
       go = {
-        enable = false; # With homebrew instead.
-        package = pkgs.staging.go;
+        enable = true;
+        package = pkgs.unstable.go;
         env = {
           GOPRIVATE = [ "dev.azure.com" ];
         };
