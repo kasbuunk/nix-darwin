@@ -314,21 +314,24 @@ in
         # gh # Unused.
         gnused
         # glab # Unused.
-        # go # Installed in programs below.
-        unstable.godef
-        unstable.gofumpt
-        # goku # Unused.
-        unstable.gopkgs
-        unstable.gomodifytags
-        unstable.gopls
-        unstable.gotest
-        unstable.gotests
-        unstable.gotestsum
-        unstable.gotools
-        unstable.golangci-lint
-        unstable.go-outline
-        # unstable.go-mockery # Unused.
-        unstable.go-tools
+
+        # go # Configured in programs below.
+
+        # Uninstalled due to slow adoption and inconsistent versions 
+	# in the unstable channel.
+        # unstable.godef
+        # unstable.gofumpt
+        # unstable.gopkgs
+        # unstable.gomodifytags
+        # unstable.gopls
+        # unstable.gotest
+        # unstable.gotests
+        # unstable.gotestsum
+        # unstable.gotools
+        # unstable.golangci-lint
+        # unstable.go-outline
+        # unstable.go-tools
+
         # graphviz Large.
         # grpcurl # Unused.
         home-manager
@@ -561,7 +564,7 @@ in
       };
 
       go = {
-        enable = true;
+        enable = false;
         package = pkgs.unstable.go;
         env = {
           GOPRIVATE = [ "dev.azure.com" ];

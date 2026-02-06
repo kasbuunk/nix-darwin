@@ -20,19 +20,6 @@
         };
       };
     })
-    (final: prev: {
-      staging = import inputs.staging {
-        system = pkgs.system;
-        config = {
-          allowUnfree = true;
-          packageOverrides = spkgs: {
-            sqlite = spkgs.sqlite.overrideAttrs (oldAttrs: {
-              doCheck = false;
-            });
-          };
-        };
-      };
-    })
     (final: prev: rec {
       intel = import inputs.nixpkgs {
         system = "x86_64-darwin";
