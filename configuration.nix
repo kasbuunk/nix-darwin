@@ -4,7 +4,7 @@ let
   userName = specialArgs.userName;
 in
 {
-  environment.shells = [ pkgs.fish pkgs.zsh pkgs.bash ];
+  environment.shells = [ pkgs.zsh pkgs.bash ];
 
 
   # Environment variables available in all shell inititialisations.
@@ -91,8 +91,8 @@ in
   programs.bash.enable = true;
   programs.direnv.enable = true;
   programs.direnv.silent = false;
-  programs.fish.enable = true;
-  programs.fish.shellInit = ''for p in (string split " " $NIX_PROFILES); fish_add_path --prepend --move $p/bin; end'';
+  # programs.fish.enable = true; # Disabled - pulls in broken inetutils dependency
+  # programs.fish.shellInit = ''for p in (string split " " $NIX_PROFILES); fish_add_path --prepend --move $p/bin; end'';
   programs.zsh.enable = true;
 
   # Auto upgrade nix package and the daemon service.

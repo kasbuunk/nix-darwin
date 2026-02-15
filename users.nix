@@ -302,7 +302,7 @@ in
         # emacs # Large.
         fd
         # ffmpeg # Very large package.
-        fish
+        # fish # Removed - pulls in broken inetutils dependency
         fzf
         fx
         # gcc-arm-embedded # Large.
@@ -335,7 +335,7 @@ in
         htop
         # imagemagick # Very large package.
         impl
-        inetutils
+        # inetutils
         # inkscape # Very large package.
         # istioctl # Large.
         # joker # Large.
@@ -368,7 +368,7 @@ in
         openapi-generator-cli
         # unstable.opencode # Not up to date enough.
         openssl
-        openocd
+        # openocd
         pdf2svg
         plantuml
         podman
@@ -474,26 +474,27 @@ in
       };
       bash.enable = true;
 
-      fish = {
-        enable = true;
-        shellAliases = {
-          fish_title = "prompt_pwd"; # set terminal window title
-          zf = "z --pipe=fzf";
-          # sudo to prompt immediately.
-          darwin-switch = "sudo -v; nix eval ~/.config/nix-darwin; darwin-rebuild switch --flake ~/.config/nix-darwin";
-        };
-        plugins = with pkgs.fishPlugins; [
-          { name = "fzf"; src = fzf-fish.src; } # better than built-in fzf keybinds
-        ];
-        shellInit = ''
-          any-nix-shell fish --info-right | source
-          thefuck --alias | source
-          fish_add_path /opt/homebrew/bin
-        '';
-      };
+      # fish disabled - pulls in broken inetutils dependency
+      # fish = {
+      #   enable = true;
+      #   shellAliases = {
+      #     fish_title = "prompt_pwd"; # set terminal window title
+      #     zf = "z --pipe=fzf";
+      #     # sudo to prompt immediately.
+      #     darwin-switch = "sudo -v; nix eval ~/.config/nix-darwin; darwin-rebuild switch --flake ~/.config/nix-darwin";
+      #   };
+      #   plugins = with pkgs.fishPlugins; [
+      #     { name = "fzf"; src = fzf-fish.src; } # better than built-in fzf keybinds
+      #   ];
+      #   shellInit = ''
+      #     any-nix-shell fish --info-right | source
+      #     thefuck --alias | source
+      #     fish_add_path /opt/homebrew/bin
+      #   '';
+      # };
       fzf = {
         enable = true;
-        enableFishIntegration = false; # use fzf-fish plugin instead
+        enableFishIntegration = false;
       };
 
       git = {
@@ -690,6 +691,9 @@ in
 
           # Docker desktop.
           export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
+
+          # For claude code.
+          export PATH="$HOME/.local/bin:$PATH"
         '';
       };
     };

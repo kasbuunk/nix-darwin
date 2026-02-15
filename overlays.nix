@@ -7,6 +7,22 @@
   };
   
   nixpkgs.overlays = [
+    # Fix inetutils build failure on macOS by providing a dummy package
+    (final: prev: {
+      inetutils = prev.runCommand "inetutils-dummy" {} ''
+        mkdir -p $out/bin
+        mkdir -p $out/share/man/man1
+        # Create dummy binaries that just print a message
+        for cmd in telnet ftp tftp; do
+          cat > $out/bin/$cmd << 'EOF'
+#!/bin/sh
+echo "inetutils is not available on this system (build failure on macOS)"
+exit 1
+EOF
+          chmod +x $out/bin/$cmd
+        done
+      '';
+    })
     (final: prev: {
       unstable = import inputs.unstable {
         system = pkgs.system;
