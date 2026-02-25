@@ -694,6 +694,9 @@ in
 
           # For claude code.
           export PATH="$HOME/.local/bin:$PATH"
+
+          # For cargo binaries.
+          export PATH="$HOME/.cargo/bin:$PATH"
         '';
       };
     };
