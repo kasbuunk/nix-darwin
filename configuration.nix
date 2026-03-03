@@ -27,7 +27,7 @@ in
 
   homebrew = {
     enable = true;
-    onActivation.cleanup = "uninstall";
+    # onActivation.cleanup = "uninstall"; # Uncomment if you want to auto uninstall packages on each rebuild.
     taps = [
     ];
     brews = [

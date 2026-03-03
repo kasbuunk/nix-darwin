@@ -275,7 +275,7 @@ in
         # argocd # Large.
         (aspellWithDicts (dicts: with dicts; [ nl en en-computers en-science ]))
         # autojump
-        azure-cli
+        # azure-cli
         # babelfish
         bacon
         # bash # Caused collision. Installed below.
@@ -443,6 +443,7 @@ in
         CGO_ENABLED = "0";
         DEVOPS_PAT_TOKEN_NAME = "development";
         DEVOPS_PAT_TOKEN_VALUE = clientToken;
+	GOFUMPT_SPLIT_LONG_LINES = "on";
       };
 
       shellAliases = {
