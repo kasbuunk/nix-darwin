@@ -371,7 +371,7 @@ in
         # openocd
         pdf2svg
         plantuml
-        podman
+        # podman
         # perl # Unused.
         # pgcli # Unused.
         pkg-config
@@ -451,7 +451,7 @@ in
         "...." = "cd ../../..";
         "....." = "cd ../../../..";
         "......" = "cd ../../../../..";
-        "docker" = "podman";
+        # "docker" = "podman";
       };
 
       # This value determines the Home Manager release that your configuration is
